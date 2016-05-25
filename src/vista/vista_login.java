@@ -5,13 +5,15 @@
  */
 package vista;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 /**
@@ -23,36 +25,70 @@ public class vista_login extends JFrame{
     static JLabel labelLogo;
     static JLabel labelUsuario;
     static JLabel labelContraseña;
-    static JTextArea txtUsuario;
-    static JTextArea txtContraseña;
+    static JTextField txtUsuario;
+    static JTextField txtContraseña;
     static JButton btnConectar;
     
     public vista_login(){
-        JPanel panel = new JPanel();
         
-        //this.setName("Login - Proyecto Eval3");
-        //this.setBounds(700, 450, 300, 300);
-        //this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //this.setResizable(false);
+        this.setTitle("Login - Proyecto Eval3");
+        this.setBounds(700, 450, 600, 400);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setResizable(false);
         
         labelLogo = new JLabel("Proyecto Eval3");
-        //labelLogo.setSize(null);
-        
         labelUsuario = new JLabel("Usuario: ");
-        //labelUsuario.setSize(null);
-        
         labelContraseña = new JLabel("Contraseña: ");
-        //labelContraseña.setSize(null);
-        
-        txtUsuario = new JTextArea();
-        //txtUsuario.setSize(null);
-        
-        txtContraseña = new JTextArea();
-        //txtContraseña.setSize(null);
-        
+        txtUsuario = new JTextField();
+            txtUsuario.setColumns(8);
+        txtContraseña = new JPasswordField();
+            txtContraseña.setColumns(8);
         btnConectar = new JButton("Conectar");
-        //btnConectar.setSize(null);
+        
+        this.getContentPane().setLayout (new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+       
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        constraints.weighty = 1.0;
+        this.getContentPane().add(labelLogo, constraints);
+        constraints.weighty = 0.0;
+        
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        this.getContentPane().add(labelUsuario, constraints);
+        
+        constraints.gridx = 2;
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        this.getContentPane().add(txtUsuario, constraints);
+        
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        this.getContentPane().add(labelContraseña, constraints);
+        
+        constraints.gridx = 2;
+        constraints.gridy = 2;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        this.getContentPane().add(txtContraseña, constraints);
+        
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        constraints.weighty = 1.0;
+        this.getContentPane().add(btnConectar, constraints);
+        constraints.weighty = 0.0;
     }
+    
     /**
      * @return el nombre de usuario
      */
@@ -71,7 +107,7 @@ public class vista_login extends JFrame{
      * @args le da comportamiento a los botones
      * @param escucharBoton action listener del boton
      */
-    public void addListener(ActionListener escucharBoton){
+    public void añadirListener(ActionListener escucharBoton){
         btnConectar.addActionListener(escucharBoton);
     }
     
