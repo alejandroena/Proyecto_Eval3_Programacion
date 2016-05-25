@@ -5,10 +5,13 @@
  */
 package vista;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -19,93 +22,133 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Alejandro
+ * @author Alumno
  */
 public class panel_visualizarProductos extends JPanel{
     JLabel labelFiltro;
-    ButtonGroup grupo;
     JRadioButton radioNinguno;
     JRadioButton radioCodigo;
     JTextField txtCodigo;
     JRadioButton radioFamilia;
     JTextField txtFamilia;
+    ButtonGroup grupo;
     JButton btnBuscar;
     JCheckBox checkBox;
-    JTable tabla;
+    JButton btnExportar;
+    JTable datos;
+    ImageIcon imgExportar;
     
     public panel_visualizarProductos(){
-        this.setLayout(new GridLayout(1,2,3,3));
-        
-        labelFiltro = new JLabel("Filtros:");
+        labelFiltro = new JLabel("Filtros: ");
         radioNinguno = new JRadioButton("Ninguno", true);
-        radioCodigo = new JRadioButton("Codigo de Producto", false);
+        radioCodigo = new JRadioButton("Codigo: ", false);
+        radioFamilia = new JRadioButton("Familia: ", false);
         txtCodigo = new JTextField();
-            txtCodigo.setEnabled(false);
             txtCodigo.setColumns(10);
-        radioFamilia = new JRadioButton("Familia de productos", false);
+            txtCodigo.setEditable(false);
         txtFamilia = new JTextField();
+            txtFamilia.setEditable(false);
             txtFamilia.setColumns(10);
-            txtFamilia.setEnabled(false);
-        
-        btnBuscar = new JButton("Realizar Busqueda");
-        checkBox = new JCheckBox("Ordenar por Stock");
         grupo = new ButtonGroup();
-        grupo.add(radioNinguno);
-        grupo.add(radioCodigo);
-        grupo.add(radioFamilia);
+            grupo.add(radioNinguno);
+            grupo.add(radioCodigo);
+            grupo.add(radioFamilia);
+        btnBuscar = new JButton("Buscar");
+        imgExportar = new ImageIcon("src/libreria/img_exportar_xml.png");
+        btnExportar = new JButton(imgExportar);
+            btnExportar.setBackground(Color.WHITE);
+        checkBox = new JCheckBox("Ordenar por Stock", false);
+        datos = new JTable();
+        
+        this.setLayout(new BorderLayout());
         
         JPanel form = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         
-        constraints.gridx = 0;
+        constraints.gridx = 10;
         constraints.gridy = 0;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        this.add(labelFiltro, constraints);
+        constraints.weighty = 1.0;
+        form.add(btnExportar, constraints);
+        constraints.weighty = 0.0;
         
-        constraints.gridx = 2;
+        constraints.gridx = 0;
         constraints.gridy = 1;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        this.add(radioNinguno, constraints);
+        form.add(labelFiltro, constraints);
         
-        constraints.gridx = 2;
+        constraints.gridx = 1;
         constraints.gridy = 2;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        this.add(radioCodigo, constraints);
+        form.add(radioNinguno, constraints);
         
-        constraints.gridx = 4;
-        constraints.gridy = 2;
-        constraints.gridwidth = 2;
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        this.add(txtCodigo, constraints);
+        form.add(radioCodigo, constraints);
         
         constraints.gridx = 2;
         constraints.gridy = 3;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        this.add(radioFamilia, constraints);
+        form.add(txtCodigo, constraints);
         
-        constraints.gridx = 4;
-        constraints.gridy = 3;
-        constraints.gridwidth = 2;
+        constraints.gridx = 1;
+        constraints.gridy = 4;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        this.add(txtFamilia, constraints);
+        form.add(radioFamilia, constraints);
         
         constraints.gridx = 2;
         constraints.gridy = 4;
-        constraints.gridwidth = 3;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        this.add(btnBuscar, constraints);
+        form.add(txtFamilia, constraints);
         
-        constraints.gridx = 4;
-        constraints.gridy = 4;
+        constraints.gridx = 2;
+        constraints.gridy = 5;
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
-        this.add(checkBox, constraints);
+        form.add(btnBuscar, constraints);
         
-        this.add(form);
+        constraints.gridx = 4;
+        constraints.gridy = 5;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        form.add(checkBox, constraints);
         
+        this.add(form, BorderLayout.NORTH);
+        this.add(datos, BorderLayout.SOUTH);
+    }
+    
+    public String getTxtCodigo(){
+        return txtCodigo.getText();
+    }
+    
+    public String getTxtFamilia(){
+        return txtFamilia.getText();
+    }
+    
+    public void ListenerBoton(ActionListener escucharBoton){
+        btnBuscar.addActionListener(escucharBoton);
+        btnExportar.addActionListener(escucharBoton);
+    }
+    
+    public void ListenerRadio(ActionListener escucharRadio){
+        radioNinguno.addActionListener(escucharRadio);
+        radioCodigo.addActionListener(escucharRadio);
+        radioFamilia.addActionListener(escucharRadio);
+    }
+    
+    public void ListenerCheckBox(ActionListener escucharCheckBox){
+        checkBox.addActionListener(escucharCheckBox);
+    }
+    
+    public void actualizarTabla(JTable tabla){
+        datos = tabla;
     }
 }

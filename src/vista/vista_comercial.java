@@ -6,7 +6,9 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,14 +24,16 @@ public class vista_comercial extends JFrame{
     
     
     JButton btnSalir;
+    ImageIcon imagen;
     public vista_comercial(){
         this.setTitle("Comercial - Proyecto Eval3");
         this.setBounds(700, 450, 600, 400);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
         
-        
-        btnSalir = new JButton("cerrar sesion");
+        imagen = new ImageIcon("src/libreria/img_desconectar.jpg");
+        btnSalir = new JButton(imagen);
+            btnSalir.setBackground(Color.WHITE);
         
         this.getContentPane().setLayout(new BorderLayout());
         
@@ -42,7 +46,7 @@ public class vista_comercial extends JFrame{
         panel_visualizarProductos ver = new panel_visualizarProductos();
         contenido.addTab("Visualizar Productos", ver);
         
-        panel_venderProducto vender = new panel_venderProducto();
+        panel_ventaProducto vender = new panel_ventaProducto();
         contenido.addTab("Vender Productos", vender);
         
         this.getContentPane().add(contenido, BorderLayout.CENTER);

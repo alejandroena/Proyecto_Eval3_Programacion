@@ -21,7 +21,7 @@ public class AlejandroEna_Proyecto_Eval3 {
      */
     
     public static void main(String[] args) {
-        //conexionBD conexionBD = new conexionBD();
+        //conexionBD conexionBD = new conexionBD("programacioneval3", "user", "1234", "jdbc:mysql://localhost/");
         //modelo_login mLogin = new modelo_login();
         //vista_login vLogin = new vista_login();
         //controlador_login cLogin = new controlador_login(vLogin, mLogin, conexionBD);
