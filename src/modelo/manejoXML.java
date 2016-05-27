@@ -5,9 +5,13 @@
  */
 package modelo;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 
 
@@ -17,8 +21,8 @@ import org.jdom2.Element;
  */
 public class manejoXML {
     
-    public void crearXML(Articulo[] lista){
-        //try{
+    public void crearXML(Articulo[] lista, String arNom) throws IOException{
+        try{
             Element articulos = new Element("Articulos");
             Document doc = new Document(articulos);
             
@@ -35,7 +39,25 @@ public class manejoXML {
                 
                 Element precio = new Element("precio");
                 precio.setText(Float.toString(lista[i].getPrecio()));
+                
+                Element cantidad = new Element("cantidad");
+                cantidad.setText(Integer.toString(lista[i].getCantidad()));
+                
+                articulo.addContent(nombre);
+                articulo.addContent(familia);
+                articulo.addContent(precio);
+                articulo.addContent(cantidad);
+                
+                doc.getRootElement().addContent(articulo);
             }
-       // }
+            
+            XMLOutputter xmloutput = new XMLOutputter();
+            
+            xmloutput.setFormat(Format.getPrettyFormat());
+            xmloutput.output(doc, System.out);
+            xmloutput.output(doc, new FileWriter(arNom+".xml"));
+        } catch (IOException ex) {
+           throw ex;
+        }
     }
 }

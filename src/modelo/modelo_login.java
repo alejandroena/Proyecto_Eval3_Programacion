@@ -7,7 +7,6 @@ package modelo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -17,11 +16,8 @@ public class modelo_login {
     private boolean conectar;
 
     public void conectar(String usuario, String contraseña, conexionBD conexionBD) throws SQLException{
-        String consulta ="SELECT * FROM users WHERE usuario ="+usuario+" AND contraseña ="+contraseña;
-        ResultSet rs = null;
-        
-        Statement st = conexionBD.conexion.createStatement();
-        rs = st.executeQuery(consulta);
+        String sentenciaSQL ="SELECT * FROM users WHERE usuario ="+usuario+" AND contraseña ="+contraseña;
+        ResultSet rs = conexionBD.ejecutaQuery(sentenciaSQL);
         rs.last();
         
         if(rs.getRow()<1){
@@ -30,7 +26,7 @@ public class modelo_login {
             conectar = true;
         }
     }
-    
+   
     public boolean getConectar(){
         return conectar;
     }

@@ -7,7 +7,9 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -47,5 +49,27 @@ public class conexionBD {
         } catch (SQLException ex) {
             throw ex;
         }
+    }
+    
+    public int ejecutaUpdate(String sentenciaSQL) throws SQLException{
+        int n = 0;
+        try{
+            Statement st = conexion.createStatement();
+            n = st.executeUpdate(sentenciaSQL);
+        } catch(SQLException ex){
+            throw ex;
+        }
+        return n;
+    }
+    
+    public ResultSet ejecutaQuery(String SentenciaSQL) throws SQLException{
+        ResultSet rs = null;
+        try{
+            Statement st = conexion.createStatement();
+            rs = st.executeQuery(SentenciaSQL);
+        } catch(SQLException ex){
+            throw ex;
+        }
+        return rs;
     }
 }

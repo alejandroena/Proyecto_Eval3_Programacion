@@ -11,6 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -87,15 +88,15 @@ public class panel_ventaProducto extends JPanel{
     /**
      * @return codigo del producto
      */
-    public String getTxtCodigo(){
-        return txtCodigo.getText();
+    public int getTxtCodigo(){
+        return Integer.parseInt(txtCodigo.getText());
     }
     
     /**
      * @return cantidad del producto
      */
-    public String getTxtCantidad(){
-        return txtCantidad.getText();                
+    public int getTxtCantidad(){
+        return Integer.parseInt(txtCantidad.getText());                
     }
     
     /**
@@ -107,12 +108,30 @@ public class panel_ventaProducto extends JPanel{
     }
     
     /**
+     * @return el boton
+     */
+    public JButton getBtnAñadir(){
+        return btnAñadir;
+    }
+    
+    /**
+     * @return el boton
+     */
+    public JButton getBtnVender(){
+        return btnVender;
+    }
+    
+    /**
      * @args le asigna comportamiento al boton
      * @param escucharBoton comportamiento del boton
      */
     public void ListenerBoton(ActionListener escucharBoton){
         btnAñadir.addActionListener(escucharBoton);
         btnVender.addActionListener(escucharBoton);
+    }
+    
+    public void mostrarAlerta(String mensage){
+       JOptionPane.showMessageDialog(this.getParent(), mensage);
     }
             
 }

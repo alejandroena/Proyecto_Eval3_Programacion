@@ -11,8 +11,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import modelo.conexionBD;
 import modelo.modelo_login;
-import vista.vista_comercial;
-import vista.vista_gerente;
 import vista.vista_login;
 
 /**
@@ -23,10 +21,9 @@ public class controlador_login {
     private vista_login vistaLog;
     private modelo_login modelo;
     private conexionBD conexionBD;
-    private vista_gerente vistaGen;
-    private vista_comercial vistaCom;
     
-    public controlador_login(vista_login vista, modelo_login modelo, conexionBD conexionBD, vista_gerente vistaGen, vista_comercial vistaCom){
+    
+    public controlador_login(vista_login vista, modelo_login modelo, conexionBD conexionBD){
         this.vistaLog = vista;
         this.modelo = modelo;
         this.conexionBD = conexionBD;
@@ -53,9 +50,7 @@ public class controlador_login {
                 else{
                     vistaLog.mostrarAlerta("Usuario o contraseña incorrectos");
                 }
-            } catch (SQLException ex) {
-                vistaLog.mostrarAlerta("Ha ocurrido un error al intentar comunicarse con la base de datos");
-            } catch (ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 vistaLog.mostrarAlerta("Ha ocurrido un error al intentar comunicarse con la base de datos");
             }
         }

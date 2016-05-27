@@ -5,7 +5,11 @@
  */
 package alejandroena_proyecto_eval3;
 
+import controlador.controlador_bajaProducto;
+import javax.swing.JFrame;
 import modelo.conexionBD;
+import modelo.modelo_bajaProducto;
+import vista.panel_bajaProductos;
 import vista.vista_comercial;
 import vista.vista_gerente;
 import vista.vista_login;
@@ -27,8 +31,7 @@ public class AlejandroEna_Proyecto_Eval3 {
         //controlador_login cLogin = new controlador_login(vLogin, mLogin, conexionBD);
         //vLogin.setVisible(true);
         
-        vista_comercial vc = new vista_comercial();
-        vc.setVisible(true);
+        
     }
     
     public static void iniciarUsuario(String usuario){

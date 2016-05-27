@@ -10,6 +10,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -134,5 +135,12 @@ public class panel_altaProductos extends JPanel{
      */
     public void ListenerBoton(ActionListener escucharBoton){
         btnAñadir.addActionListener(escucharBoton);
+    }
+    /**
+     * @args muestra una alerta
+     * @param mensage de alerta
+     */
+    public void mostrarAlerta(String mensage){
+       JOptionPane.showMessageDialog(this.getParent(), mensage);
     }
 }
