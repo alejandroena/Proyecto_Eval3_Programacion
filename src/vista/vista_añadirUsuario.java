@@ -13,7 +13,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -35,7 +37,6 @@ public class vista_añadirUsuario extends JFrame{
     public vista_añadirUsuario(){
         this.setTitle("Añadir usuario");
         this.setBounds(700, 450, 400, 300);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
         
         labelNombre = new JLabel("Usuario");
@@ -43,14 +44,15 @@ public class vista_añadirUsuario extends JFrame{
         labelReContraseña = new JLabel("Repite Contraseña");
         txtNombre = new JTextField();
             txtNombre.setColumns(15);
-        txtContraseña = new JTextField();
+        txtContraseña = new JPasswordField();
             txtContraseña.setColumns(15);
-        txtReContraseña = new JTextField();
+        txtReContraseña = new JPasswordField();
             txtReContraseña.setColumns(15);
         btnCancelar = new JButton("Cancelar");
         btnAceptar = new JButton("Aceptar");
         labelError = new JLabel();
             labelError.setForeground(Color.red);
+            
         this.setLayout(new BorderLayout());
         
         JPanel form = new JPanel(new GridBagLayout());
@@ -103,9 +105,14 @@ public class vista_añadirUsuario extends JFrame{
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
         form.add(btnAceptar, constraints);
+ 
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 10;
+        constraints.gridheight = 1;
+        form.add(labelError, constraints);
         
         this.add(form, BorderLayout.CENTER);
-        this.add(labelError, BorderLayout.SOUTH);
     }
     
     public String getTxtNombre(){
@@ -120,12 +127,30 @@ public class vista_añadirUsuario extends JFrame{
         return txtReContraseña.getText();
     }
     
+    public void borrarDatos(){
+        txtNombre.setText("");
+        txtContraseña.setText("");
+        txtReContraseña.setText("");
+    }
+    
+    public JButton getBtnAceptar(){
+        return btnAceptar;
+    }
+    
+    public JButton getBtnCancelar(){
+        return btnCancelar;
+    }
+    
      public void ListenerBoton(ActionListener escucharBoton){
         btnCancelar.addActionListener(escucharBoton);
         btnAceptar.addActionListener(escucharBoton);
     }
      
-     public void setLabelError(String texto){
-         labelError.setText(texto);
-     }
+    public void setLabelError(String texto){
+        labelError.setText(texto);
+    }
+    
+    public void mostrarError(String mensage){
+        JOptionPane.showMessageDialog(this, mensage);
+    }
 }

@@ -45,23 +45,39 @@ public class controlador_ventaProducto {
                     conexionBD.abrirConexion();
                     modelo.añadir(codigo, cantidad, conexionBD);
                     conexionBD.cerrarConexion();
-                
-                    if(modelo.getSuficiente()){
-                        vista.setInformacion(codigo+" "+modelo.getNombre()+" x"+cantidad+"\t"+modelo.getPrecio()+"€");
+                    if(modelo.getEncontrado()){
+                        if(modelo.getSuficiente()){
+                            vista.setInformacion(codigo+" "+modelo.getNombre()+"\t x"+cantidad+"\t"+modelo.getPrecio()+"€");
+                            vista.setTotal(modelo.getPrecio());
+                        }
+                        else{
+                            vista.mostrarAlerta("Cantidad del articulo insuficiente");
+                        }
+                    } else{
+                        vista.mostrarAlerta("Articulo no encontrado");
                     }
-                    else{
-                        vista.mostrarAlerta("Cantidad del articulo insuficiente");
-                    }
+                    
                 } catch (ClassNotFoundException | SQLException ex) {
                     vista.mostrarAlerta("Error al encontrar el articulo");
+                } catch(NumberFormatException ex){
+                    vista.mostrarAlerta("el codigo y la cantidad deben ser numeros");
                 }
             }
             else if(obj.equals(vista.getBtnVender())){
                 try {
+                    conexionBD.abrirConexion();
                     modelo.vender(conexionBD);
-                } catch (SQLException ex) {
+                    conexionBD.cerrarConexion();
+                    modelo.borrar();
+                    vista.borrarInformacion();
+                } catch (SQLException | ClassNotFoundException ex) {
                     vista.mostrarAlerta("Error al procesar la venta");
                 }
+            }
+            else if(obj.equals(vista.getBtnCancelar())){
+                modelo.borrar();
+                vista.borrarInformacion();
+                
             }
         }
     }

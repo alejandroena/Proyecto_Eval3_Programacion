@@ -8,8 +8,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.conexionBD;
 import modelo.modelo_altaProducto;
 import vista.panel_altaProductos;
@@ -33,28 +31,40 @@ public class controlador_altaProducto {
         String nombre, familia;
         int stock;
         float precio;
+        
         @Override
         public void actionPerformed(ActionEvent e) {
+            Object obj = e.getSource();
             
-            try {
-                nombre = vista.getTxtNombre();
-                familia = vista.getTxtFamilia();
-                stock = vista.getTxtStock();
-                precio = (float) vista.getTxtPrecio();
+            if(obj.equals(vista.getBtnAñadir())){
+                try {
+                    nombre = vista.getTxtNombre();
+                    familia = vista.getTxtFamilia();
+                    stock = vista.getTxtStock();
+                    precio = vista.getTxtPrecio();
+                    
+                    if(nombre.equals("") | familia.equals("") | stock==0 | precio==0){
+                        vista.mostrarAlerta("Faltan campos por rellenar");
+                    }else{
+                    
+                        conexionBD.abrirConexion();
+                        modelo.alta(nombre, familia, stock, precio, conexionBD);
+                        vista.borrarDatos();
+                        conexionBD.cerrarConexion();
                 
-                conexionBD.abrirConexion();
-                modelo.alta(nombre, familia, stock, precio, conexionBD);
-                conexionBD.cerrarConexion();
-                
-                if(modelo.getCompletado() == false){
-                    vista.mostrarAlerta("no se ha podido dar de alta el producto");
+                        if(modelo.getCompletado() == false){
+                            vista.mostrarAlerta("no se ha podido dar de alta el producto");
+                        }
+                    }
+                } catch (ClassNotFoundException | SQLException ex) {
+                    vista.mostrarAlerta("Ha ocurrido un error al intentar dar de alta el producto");
+                } catch (NumberFormatException ex){
+                    vista.mostrarAlerta("La cantidad y el precio deben ser numeros");
                 }
-            
-            } catch (ClassNotFoundException | SQLException ex) {
-                vista.mostrarAlerta("Ha ocurrido un error al intentar dar de alta el producto");
             }
-            
-            
+            else if(obj.equals(vista.getBtnCancelar())){
+                vista.borrarDatos();
+            }
         }
     }
 }

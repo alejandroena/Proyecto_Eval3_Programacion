@@ -28,7 +28,7 @@ public class panel_bajaProductos extends JPanel{
     JTextField txtNombre;
     ButtonGroup grupo;
     JButton btnAceptar;
-    
+    JButton btnCancelar;
     public panel_bajaProductos(){
         labelTexto = new JLabel("Introduce el codigo o el nombre del producto");
         radioCodigo = new JRadioButton("Codigo: ",true);
@@ -43,6 +43,7 @@ public class panel_bajaProductos extends JPanel{
             grupo.add(radioCodigo);
             grupo.add(radioNombre);
         btnAceptar = new JButton("Aceptar");
+        btnCancelar = new JButton("Cancelar");
         
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -86,13 +87,24 @@ public class panel_bajaProductos extends JPanel{
         constraints.gridheight = 1;
         constraints.weighty = 1.0;
         this.add(btnAceptar, constraints);
+        
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+        constraints.weighty = 1.0;
+        this.add(btnCancelar, constraints);
     }
     
     /**
      * @return codigo
      */
     public int getTxtCodigo(){
-        return Integer.parseInt(txtCodigo.getText());
+        if(txtCodigo.getText().equals("")){
+            return 0;
+        }else{
+            return Integer.parseInt(txtCodigo.getText());
+        }
     }
     
     /**
@@ -102,12 +114,25 @@ public class panel_bajaProductos extends JPanel{
         return txtNombre.getText();
     }
     
+    public void borrarDatos(){
+        txtCodigo.setText("");
+        txtNombre.setText("");
+    }
+    
+    public JButton getBtnAceptar(){
+        return btnAceptar;
+    }
+    
+    public JButton getBtnCancelar(){
+        return btnCancelar;
+    }
     /**
      * @args añade comportamiento al boton
      * @param escucharBoton comportamiento del boton
      */
     public void ListenerBoton(ActionListener escucharBoton){
         btnAceptar.addActionListener(escucharBoton);
+        btnCancelar.addActionListener(escucharBoton);
     }
     
     /**

@@ -15,10 +15,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,9 +38,11 @@ public class panel_visualizarProductos extends JPanel{
     JButton btnBuscar;
     JCheckBox checkBox;
     JButton btnExportar;
-    JTable datos;
+    final JTable datos;
     ImageIcon imgExportar;
-    
+    DefaultTableModel tabla;
+    JScrollPane scrollPane;
+        
     public panel_visualizarProductos(){
         labelFiltro = new JLabel("Filtros: ");
         radioNinguno = new JRadioButton("Ninguno", true);
@@ -58,7 +63,11 @@ public class panel_visualizarProductos extends JPanel{
         btnExportar = new JButton(imgExportar);
             btnExportar.setBackground(Color.WHITE);
         checkBox = new JCheckBox("Ordenar por Stock", false);
-        datos = new JTable();
+        String columna[] = new String[]{"Codigo","Nombre","Familia","Cantidad","Precio"};
+        tabla = new DefaultTableModel(null, columna);
+        datos = new JTable(tabla);
+            datos.setEnabled(false);
+        scrollPane = new JScrollPane(datos);   
         
         this.setLayout(new BorderLayout());
         
@@ -122,15 +131,36 @@ public class panel_visualizarProductos extends JPanel{
         form.add(checkBox, constraints);
         
         this.add(form, BorderLayout.NORTH);
-        this.add(datos, BorderLayout.SOUTH);
+        this.add(scrollPane, BorderLayout.CENTER);
     }
     
-    public String getTxtCodigo(){
-        return txtCodigo.getText();
+    public int getTxtCodigo(){
+        if(txtCodigo.getText().equals("")){
+            return 0;
+        }
+        else{
+            return Integer.parseInt(txtCodigo.getText());
+        }
     }
     
     public String getTxtFamilia(){
         return txtFamilia.getText();
+    }
+    
+    public void setTxtCodigo(){
+        txtCodigo.setText("");
+    }
+    
+    public void setTxtFamilia(){
+        txtFamilia.setText("");
+    }
+    
+    public JButton getBtnBuscar(){
+        return btnBuscar;
+    }
+    
+    public JButton getBtnExportar(){
+        return btnExportar;
     }
     
     public void ListenerBoton(ActionListener escucharBoton){
@@ -144,11 +174,47 @@ public class panel_visualizarProductos extends JPanel{
         radioFamilia.addActionListener(escucharRadio);
     }
     
-    public void ListenerCheckBox(ActionListener escucharCheckBox){
-        checkBox.addActionListener(escucharCheckBox);
+    public JRadioButton getRadioNinguno(){
+        return radioNinguno;
     }
     
-    public void actualizarTabla(JTable tabla){
-        datos = tabla;
+    public JRadioButton getRadioCodigo(){
+        return radioCodigo;
+    }
+    
+    public JRadioButton getRadioFamilia(){
+        return radioFamilia;
+    }
+    
+    public void setEnableCodigo(boolean enable){
+        txtCodigo.setEditable(enable);
+    }
+    
+    public void setEnableFamilia(boolean enable){
+        txtFamilia.setEditable(enable);
+    }
+    
+    public JCheckBox getCheckBox(){
+        return checkBox;
+    }
+    
+    public void actualizarTabla(Object datos[]){
+        tabla.addRow(datos);
+    }
+    
+    public void borrarTabla(){
+        tabla.setNumRows(0);
+    }
+    
+    public int getFilas(){
+        return datos.getRowCount();
+    }
+    
+    public Object getDatos(int fila, int columna){
+        return datos.getValueAt(fila, columna);
+    }
+    
+    public void mostrarError(String mensage){
+        JOptionPane.showMessageDialog(this.getParent(), mensage);
     }
 }

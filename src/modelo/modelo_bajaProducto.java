@@ -18,9 +18,9 @@ public class modelo_bajaProducto {
         String sentenciaSQL;
         int n = 0;
         if(codigo != 0){
-            sentenciaSQL = "DELETE FROM articulos WHERE codigo = '"+codigo+"';";
+            sentenciaSQL = "DELETE FROM articulos WHERE cod_articulo = '"+codigo+"';";
             n = conexionBD.ejecutaUpdate(sentenciaSQL);
-        }else if(nombre!=null){
+        }else if(nombre.equals("")==false){
             sentenciaSQL = "DELETE FROM articulos WHERE nombre = '"+nombre+"';";
             n = conexionBD.ejecutaUpdate(sentenciaSQL);
         }

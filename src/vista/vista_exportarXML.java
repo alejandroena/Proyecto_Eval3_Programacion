@@ -43,7 +43,7 @@ public class vista_exportarXML extends JFrame{
         labelRuta = new JLabel("Ruta: ");
         txtRuta = new JTextField();
             txtRuta.setColumns(15);
-        imgBuscar = new ImageIcon("src/lib/img_buscar_archivo.png");
+        imgBuscar = new ImageIcon("src/libreria/img_buscar_archivo.png");
         btnExaminar = new JButton(imgBuscar);
         btnCancelar = new JButton("Cancelar");
         btnAceptar = new JButton("Aceptar");
@@ -114,7 +114,19 @@ public class vista_exportarXML extends JFrame{
         return txtNombre.getText();
     }
     
-     public void ListenerBoton(ActionListener escucharBoton){
+    public JButton getBtnExaminar(){
+        return btnExaminar;
+    }
+    
+    public JButton getBtnAceptar(){
+        return btnAceptar;
+    }
+    
+    public JButton getBtnCancelar(){
+        return btnCancelar;
+    }
+    
+    public void ListenerBoton(ActionListener escucharBoton){
         btnExaminar.addActionListener(escucharBoton);
         btnCancelar.addActionListener(escucharBoton);
         btnAceptar.addActionListener(escucharBoton);

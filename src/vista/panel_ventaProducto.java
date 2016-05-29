@@ -24,14 +24,17 @@ public class panel_ventaProducto extends JPanel{
     JTextArea informacion;
     JLabel labelCodigo;
     JLabel labelCantidad;
+    JLabel labelTotal;
     JTextField txtCodigo;
     JTextField txtCantidad;
     JButton btnAñadir;
     JButton btnVender;
+    JButton btnCancelar;
     
     public panel_ventaProducto(){
         informacion = new JTextArea();
             informacion.setEditable(false);
+            informacion.setColumns(30);
         labelCodigo = new JLabel("Codigo");
         labelCantidad = new JLabel("Cantidad");
         txtCodigo = new JTextField();
@@ -40,11 +43,16 @@ public class panel_ventaProducto extends JPanel{
             txtCantidad.setColumns(10);
         btnAñadir = new JButton("Añadir");
         btnVender = new JButton("Vender");
+        btnCancelar = new JButton("Cancelar");
+        labelTotal = new JLabel();
         
         this.setLayout(new BorderLayout());
         
-        this.add(informacion, BorderLayout.WEST);
-        informacion.setColumns(30);
+        JPanel info = new JPanel(new BorderLayout());
+        info.add(informacion, BorderLayout.CENTER);
+        info.add(labelTotal, BorderLayout.SOUTH);
+        this.add(info, BorderLayout.WEST);
+
         JPanel form = new JPanel(new BorderLayout());
         
         JPanel añadir = new JPanel(new GridBagLayout());
@@ -81,10 +89,16 @@ public class panel_ventaProducto extends JPanel{
         añadir.add(btnAñadir, constraints);
         
         form.add(añadir, BorderLayout.CENTER);
-        form.add(btnVender, BorderLayout.SOUTH);
+        
+        JPanel botones = new JPanel(new BorderLayout());
+        botones.add(btnCancelar, BorderLayout.WEST);
+        botones.add(btnVender, BorderLayout.EAST);
+        
+        form.add(botones, BorderLayout.SOUTH);
         
         this.add(form, BorderLayout.EAST);
     }
+    
     /**
      * @return codigo del producto
      */
@@ -99,12 +113,32 @@ public class panel_ventaProducto extends JPanel{
         return Integer.parseInt(txtCantidad.getText());                
     }
     
+    public void setTotal(float cantidad){
+        try{
+            String[] total = labelTotal.getText().split(":");
+            float n = Float.parseFloat(total[1]);
+            labelTotal.setText("Total:"+(n+cantidad));
+        } catch(ArrayIndexOutOfBoundsException ex){
+            labelTotal.setText("Total:"+cantidad);
+        }
+    }
+    
     /**
      * @args informacion de la venta
      * @param texto a escribir
      */
     public void setInformacion(String texto){
-        informacion.setText("\n"+texto);
+        informacion.setText(informacion.getText()+"\n"+texto);
+    }
+    
+    /**
+     * @args borra la informacion del text area
+     */
+    public void borrarInformacion(){
+        informacion.setText("");
+        txtCodigo.setText("");
+        txtCantidad.setText("");
+        labelTotal.setText("");
     }
     
     /**
@@ -122,14 +156,26 @@ public class panel_ventaProducto extends JPanel{
     }
     
     /**
+     * @return el boton
+     */
+    public JButton getBtnCancelar(){
+        return btnCancelar;
+    }
+    
+    /**
      * @args le asigna comportamiento al boton
      * @param escucharBoton comportamiento del boton
      */
     public void ListenerBoton(ActionListener escucharBoton){
         btnAñadir.addActionListener(escucharBoton);
         btnVender.addActionListener(escucharBoton);
+        btnCancelar.addActionListener(escucharBoton);
     }
     
+    /**
+     * @args muestra un mensage de error
+     * @param mensage de error
+     */
     public void mostrarAlerta(String mensage){
        JOptionPane.showMessageDialog(this.getParent(), mensage);
     }

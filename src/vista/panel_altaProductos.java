@@ -27,6 +27,7 @@ public class panel_altaProductos extends JPanel{
     JTextField txtFamilia;
     JTextField txtStock;
     JTextField txtPrecio;
+    JButton btnCancelar;
     JButton btnAñadir;
     
     public panel_altaProductos(){
@@ -43,6 +44,7 @@ public class panel_altaProductos extends JPanel{
         txtPrecio = new JTextField();
             txtPrecio.setColumns(10);
         btnAñadir = new JButton("Añadir");
+        btnCancelar = new JButton("Cancelar");
         
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -95,11 +97,17 @@ public class panel_altaProductos extends JPanel{
         constraints.gridheight = 1;
         this.add(txtPrecio, constraints);
         
-        constraints.gridx = 0;
+        constraints.gridx = 1;
         constraints.gridy = 4;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
         this.add(btnAñadir, constraints);
+        
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        this.add(btnCancelar, constraints);
     }
     /**
      * @return el nombre del producto
@@ -119,14 +127,43 @@ public class panel_altaProductos extends JPanel{
      * @return la cantidad del producto
      */
     public int getTxtStock(){
-        return Integer.parseInt(txtStock.getText());
+        if(txtStock.getText().equals("")){
+            return 0;
+        }else{
+            return Integer.parseInt(txtStock.getText());
+        }
     }
     
     /**
      * @return el precio del producto
      */
-    public double getTxtPrecio(){
-        return Float.parseFloat(txtPrecio.getText());
+    public float getTxtPrecio(){
+        if(txtPrecio.getText().equals("")){
+            return 0;
+        }else{
+            String[] numeros = txtPrecio.getText().split(",");
+            if(numeros.length>0){
+                String precio = (numeros[0]+"."+numeros[1]);
+                return Float.parseFloat(precio);
+            }else{
+                return Float.parseFloat(txtPrecio.getText());
+            }    
+        }
+    }
+    
+    public void borrarDatos(){
+        txtNombre.setText("");
+        txtFamilia.setText("");
+        txtStock.setText("");
+        txtPrecio.setText("");
+    }
+    
+    public JButton getBtnAñadir(){
+        return btnAñadir;
+    }
+    
+    public JButton getBtnCancelar(){
+        return btnCancelar;
     }
     
     /**
@@ -135,6 +172,7 @@ public class panel_altaProductos extends JPanel{
      */
     public void ListenerBoton(ActionListener escucharBoton){
         btnAñadir.addActionListener(escucharBoton);
+        btnCancelar.addActionListener(escucharBoton);
     }
     /**
      * @args muestra una alerta

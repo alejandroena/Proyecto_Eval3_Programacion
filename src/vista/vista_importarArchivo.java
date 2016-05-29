@@ -38,7 +38,7 @@ public class vista_importarArchivo extends JFrame{
         labelRuta = new JLabel("Ruta: ");
         txtRuta = new JTextField();
             txtRuta.setColumns(15);
-        imgBuscar = new ImageIcon("src/lib/buscar_archivo.png");
+        imgBuscar = new ImageIcon("src/libreria/buscar_archivo.png");
         btnExaminar = new JButton(imgBuscar);
         btnCancelar = new JButton("Cancelar");
         btnAceptar = new JButton("Aceptar");

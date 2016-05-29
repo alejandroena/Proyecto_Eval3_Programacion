@@ -103,6 +103,11 @@ public class vista_login extends JFrame{
         return txtContraseña.getText();
     }
     
+    public void borrarDatos(){
+        txtUsuario.setText("");
+        txtContraseña.setText("");
+    }
+    
     /**
      * @args le da comportamiento a los botones
      * @param escucharBoton action listener del boton

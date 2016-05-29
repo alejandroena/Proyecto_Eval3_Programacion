@@ -21,7 +21,7 @@ public class controlador_login {
     private vista_login vistaLog;
     private modelo_login modelo;
     private conexionBD conexionBD;
-    
+    private AlejandroEna_Proyecto_Eval3 main;
     
     public controlador_login(vista_login vista, modelo_login modelo, conexionBD conexionBD){
         this.vistaLog = vista;
@@ -44,8 +44,9 @@ public class controlador_login {
                 conexionBD.cerrarConexion();
                 
                 if(modelo.getConectar()){
+                    vistaLog.borrarDatos();
                     vistaLog.setVisible(false);
-                    AlejandroEna_Proyecto_Eval3.iniciarUsuario(usuario);
+                    main.iniciarUsuario(usuario);
                 }
                 else{
                     vistaLog.mostrarAlerta("Usuario o contraseña incorrectos");

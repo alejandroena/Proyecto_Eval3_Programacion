@@ -34,7 +34,9 @@ public class controlador_bajaProducto {
         
         @Override
         public void actionPerformed(ActionEvent e) {
+            Object obj = e.getSource();
             
+            if(obj.equals(vista.getBtnAceptar())){
             try {
                 codigo = vista.getTxtCodigo();
                 nombre = vista.getTxtNombre();
@@ -42,12 +44,16 @@ public class controlador_bajaProducto {
                 conexionBD.abrirConexion();
                 modelo.baja(codigo, nombre, conexionBD);
                 conexionBD.cerrarConexion();
-                
+                vista.borrarDatos();
                 if(modelo.getCompletado() == false){
-                    vista.mostrarAlerta("no se ha podido dar de baja el producto");
+                    vista.mostrarAlerta("No se ha encontrado el producto");
                 }
             } catch (ClassNotFoundException | SQLException ex) {
                 vista.mostrarAlerta("Ha ocurrido un error al intentar dar de baja el producto");
+            }
+            }
+            else if(obj.equals(vista.getBtnCancelar())){
+                vista.borrarDatos();
             }
         }
     }
@@ -59,10 +65,12 @@ public class controlador_bajaProducto {
             Object obj = e.getSource();
             if(obj.equals(vista.getRadioCodigo())){
                 vista.enableTxtCodigo(true);
+                vista.borrarDatos();
                 vista.enableTxtNombre(false);
             }
             else if(obj.equals(vista.getRadioNombre())){
                 vista.enableTxtCodigo(false);
+                vista.borrarDatos();
                 vista.enableTxtNombre(true);
             }
         }

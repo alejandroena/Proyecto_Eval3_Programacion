@@ -9,15 +9,18 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @args vista de ventas realizadas
@@ -37,7 +40,9 @@ public class panel_visualizarVentas extends JPanel{
     JTextField txtFamilia;
     JButton btnBuscar;
     JTable datos;
-    JLabel labelTotal;
+    SimpleDateFormat formateador;
+    DefaultTableModel tabla;
+    JScrollPane scrollPane;
     
     public panel_visualizarVentas(){
         labelTxt1 = new JLabel("De     ");
@@ -46,8 +51,8 @@ public class panel_visualizarVentas extends JPanel{
         fechaFinal = new JDateChooser();
         labelFiltro = new JLabel("Filtros:");
         radioNinguno = new JRadioButton("Ninguno",true);
-        radioCodigo = new JRadioButton("Codigo producto: ",false);
-        radioFamilia = new JRadioButton("Familia del producto: ",false);
+        radioCodigo = new JRadioButton("Codigo: ",false);
+        radioFamilia = new JRadioButton("Familia: ",false);
         grupo = new ButtonGroup();
         txtCodigo = new JTextField();
             txtCodigo.setColumns(10);
@@ -56,13 +61,20 @@ public class panel_visualizarVentas extends JPanel{
             txtFamilia.setEditable(false);
             txtFamilia.setColumns(10);
         btnBuscar = new JButton("Buscar");
-        datos = new JTable();
         
         grupo.add(radioNinguno);
         grupo.add(radioCodigo);
         grupo.add(radioFamilia);
         
-        this.setLayout(new GridLayout(2,1,3,3));
+        formateador = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String columna[] = new String[]{"Codigo","Nombre","Familia","Cantidad","Precio","Fecha Venta"};
+        tabla = new DefaultTableModel(null, columna);
+        datos = new JTable(tabla);
+            datos.setEnabled(false);
+        scrollPane = new JScrollPane(datos);
+        
+        this.setLayout(new BorderLayout());
         
         JPanel form = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -137,24 +149,21 @@ public class panel_visualizarVentas extends JPanel{
         form.add(btnBuscar, constraints);
         constraints.weighty = 0.0;
         
-        this.add(form);
+        this.add(form, BorderLayout.NORTH);
+
+        this.add(scrollPane, BorderLayout.CENTER);
         
-        JPanel tabla = new JPanel(new BorderLayout());
-        
-        datos = new JTable();
-        labelTotal = new JLabel();
-            
-        tabla.add(datos, BorderLayout.CENTER);
-        tabla.add(labelTotal, BorderLayout.SOUTH);
-        
-        this.add(tabla);
     }
     
     /**
      * @return el codigo del producto
      */
-    public String getTxtCodigo(){
-        return txtCodigo.getText();
+    public int getTxtCodigo(){
+        if(txtCodigo.getText().equals("")){
+            return 0;
+        }else{
+            return Integer.parseInt(txtCodigo.getText());
+        }
     }
     
     /**
@@ -164,30 +173,61 @@ public class panel_visualizarVentas extends JPanel{
         return txtFamilia.getText();
     }
     
-    /**
-     * @args le asigna valores a la tabla
-     * @param datos datos de la tabla
-     */
-    public void setDatos(JTable datos){
-        this.datos = datos;
+    public void setTxtCodigo(){
+        txtCodigo.setText("");
     }
     
-    public void setTotal(int total){
-        this.labelTotal.setText("Total: " + total);
+    public void setTxtFamilia(){
+        txtFamilia.setText("");
     }
     
+    public void borrarTabla(){
+        tabla.setNumRows(0);
+    }
+    
+    public void actualizarTabla(Object datos[]){
+        tabla.addRow(datos);
+    }
+    
+    public JRadioButton getRadioNinguno(){
+        return radioNinguno;
+    }
+    
+    public JRadioButton getRadioCodigo(){
+        return radioCodigo;
+    }
+    
+    public JRadioButton getRadioFamilia(){
+        return radioFamilia;
+    }
     /**
      * @return la fecha inicial
      */
     public String getFechaInicial(){
-        return fechaInicial.getDateFormatString();
+        if(fechaInicial.getDate()!=null){
+            return formateador.format(fechaInicial.getDate());
+        }else{
+            return "";
+        }
     }
     
     /**
      * @return la fecha final
      */
     public String getFechaFinal(){
-        return fechaFinal.getDateFormatString();
+        if(fechaFinal.getDate()!=null){
+            return formateador.format(fechaFinal.getDate());
+        }else{
+            return "";
+        }
+    }
+    
+    public void setEnableCodigo(boolean enable){
+        txtCodigo.setEditable(enable);
+    }
+    
+    public void setEnableFamilia(boolean enable){
+        txtFamilia.setEditable(enable);
     }
     
     /**
@@ -203,7 +243,12 @@ public class panel_visualizarVentas extends JPanel{
      * @param escucharRadio comportamiento de los radioButton
      */
     public void ListenerRadio(ActionListener escucharRadio){
+        radioNinguno.addActionListener(escucharRadio);
         radioCodigo.addActionListener(escucharRadio);
         radioFamilia.addActionListener(escucharRadio);
+    }
+    
+    public void mostrarError(String mensage){
+        JOptionPane.showMessageDialog(this.getParent(), mensage);
     }
 }

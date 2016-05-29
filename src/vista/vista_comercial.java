@@ -22,9 +22,10 @@ import javax.swing.WindowConstants;
  */
 public class vista_comercial extends JFrame{
     
-    
     JButton btnSalir;
     ImageIcon imagen;
+    JTabbedPane contenido;
+    
     public vista_comercial(){
         this.setTitle("Comercial - Proyecto Eval3");
         this.setBounds(700, 450, 600, 400);
@@ -34,21 +35,14 @@ public class vista_comercial extends JFrame{
         imagen = new ImageIcon("src/libreria/img_desconectar.jpg");
         btnSalir = new JButton(imagen);
             btnSalir.setBackground(Color.WHITE);
+        contenido = new JTabbedPane();
         
         this.getContentPane().setLayout(new BorderLayout());
         
         JPanel menu = new JPanel(new BorderLayout());
         menu.add(btnSalir, BorderLayout.EAST);
         this.getContentPane().add(menu, BorderLayout.NORTH);
-        
-        JTabbedPane contenido = new JTabbedPane();
-        
-        panel_visualizarProductos ver = new panel_visualizarProductos();
-        contenido.addTab("Visualizar Productos", ver);
-        
-        panel_ventaProducto vender = new panel_ventaProducto();
-        contenido.addTab("Vender Productos", vender);
-        
+
         this.getContentPane().add(contenido, BorderLayout.CENTER);
     }
     
@@ -64,9 +58,16 @@ public class vista_comercial extends JFrame{
      * @args muestra el mensage de error
      * @param mensage mensage de error
      */
-    
     public void mostrarAlerta(String mensage){
        JOptionPane.showMessageDialog(this, mensage);
+    }
+    
+    public void tabVisualizar(panel_visualizarProductos ver){
+        contenido.addTab("Visualizar Productos", ver);
+    }
+    
+    public void tabVender(panel_ventaProducto vender){
+        contenido.addTab("Vender Productos", vender);
     }
     
 }

@@ -15,9 +15,9 @@ public class modelo_altaProducto {
     
     boolean completado;
     
-    public void alta(String nombre, String familia, int Stock, float precio, conexionBD conexionBD) throws SQLException{
-        String sentenciaSQL = "INSERT INTO articulos( nombre, familia, stock, cantidad) "
-                + "VALUES('"+nombre+"', '"+familia+"', '"+Stock+"', '"+precio+"');";
+    public void alta(String nombre, String familia, int cantidad, float precio, conexionBD conexionBD) throws SQLException{
+        String sentenciaSQL = "INSERT INTO articulos( nombre, familia, cantidad, precio) "
+                + "VALUES('"+nombre+"', '"+familia+"', '"+cantidad+"', '"+precio+"');";
         
         int n = conexionBD.ejecutaUpdate(sentenciaSQL);
         
@@ -28,6 +28,8 @@ public class modelo_altaProducto {
             completado = true;
         }
     }
+    
+    
     
     public boolean getCompletado(){
         return completado;

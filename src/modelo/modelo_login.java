@@ -16,7 +16,7 @@ public class modelo_login {
     private boolean conectar;
 
     public void conectar(String usuario, String contraseña, conexionBD conexionBD) throws SQLException{
-        String sentenciaSQL ="SELECT * FROM users WHERE usuario ="+usuario+" AND contraseña ="+contraseña;
+        String sentenciaSQL ="SELECT * FROM usuarios WHERE usuario ='"+usuario+"' AND contraseña ='"+contraseña+"';";
         ResultSet rs = conexionBD.ejecutaQuery(sentenciaSQL);
         rs.last();
         

@@ -21,7 +21,7 @@ import org.jdom2.output.XMLOutputter;
  */
 public class manejoXML {
     
-    public void crearXML(Articulo[] lista, String arNom) throws IOException{
+    public void crearXML(Articulo[] lista, String arNom, String ruta) throws IOException{
         try{
             Element articulos = new Element("Articulos");
             Document doc = new Document(articulos);
@@ -54,8 +54,7 @@ public class manejoXML {
             XMLOutputter xmloutput = new XMLOutputter();
             
             xmloutput.setFormat(Format.getPrettyFormat());
-            xmloutput.output(doc, System.out);
-            xmloutput.output(doc, new FileWriter(arNom+".xml"));
+            xmloutput.output(doc, new FileWriter(ruta+"\\"+arNom+".xml"));
         } catch (IOException ex) {
            throw ex;
         }

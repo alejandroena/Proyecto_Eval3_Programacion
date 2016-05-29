@@ -7,8 +7,6 @@ package modelo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -17,29 +15,42 @@ import java.util.logging.Logger;
 public class modelo_ventaProducto {
     
     boolean suficiente;
-    String sentenciaVender;
-    String sentenciaVentas;
+    boolean encontrado;
+    String sentenciaVender ="";
+    String sentenciaVentas ="";
     float precio;
     String nombre;
     
     public void añadir(int codigo, int cantidad, conexionBD conexionBD) throws SQLException{
-        String sentenciaCantidad = "SELECT stock FROM articulos WHERE codigo = "+codigo+";";
-        ResultSet rs = null;
+        String sentenciaCantidad = "SELECT * FROM articulos WHERE cod_articulo="+codigo;
+        ResultSet rs = conexionBD.ejecutaQuery(sentenciaCantidad);
         try {
-            int n = rs.getInt(sentenciaCantidad);
-       
-            if(n>=cantidad){
-                suficiente = true;
-                sentenciaVender = sentenciaVender.concat("UPDATE articulos SET stock="+(n-cantidad)+"WHERE codigo ="+codigo+";");
-                nombre = rs.getString("SELECT nombre FROM articulos WHERE codigo ="+codigo+";");
-                precio = rs.getFloat("SELECT precio FROM articulos WHERE codigo ="+codigo+";");
-                precio = precio * cantidad;
-                sentenciaVentas = sentenciaVentas.concat("INSERT INTO ventas( codigo, nombre, precio, cantidad, fecha) "
-                + "VALUES('"+codigo+"', '"+nombre+"', '"+precio+"', '"+cantidad+"', SYSDATE);");
+            
+            if(!rs.next()){
+                encontrado = false;
+            } else{
+                
+                int n = rs.getInt("cantidad");
+                encontrado = true;  
+                
+                if(n>=cantidad){
+                    suficiente = true;
+                    int c = n-cantidad;
+                    sentenciaVender = sentenciaVender.concat("UPDATE articulos SET cantidad="+c+" WHERE cod_articulo ="+codigo+";:");
+                    
+                    nombre = rs.getString("nombre");
+                    
+                    precio = rs.getFloat("precio");
+                    precio = precio * cantidad;
+                    sentenciaVentas = sentenciaVentas.concat("INSERT INTO ventas(cod_articulo, cantidad) "
+                    + "VALUES("+codigo+", "+cantidad+");:");
+                }
+                else{
+                    suficiente = false;
+                }
+                
             }
-            else{
-                suficiente = false;
-            }
+            
         } catch (SQLException ex) {
             throw ex;
         }
@@ -47,16 +58,36 @@ public class modelo_ventaProducto {
     
     public void vender(conexionBD conexionBD) throws SQLException{
         try {
-            conexionBD.ejecutaUpdate(sentenciaVender);
-            conexionBD.ejecutaUpdate(sentenciaVentas);
+            
+            String[] vender = sentenciaVender.split(":");
+            for(int i=0;i<vender.length;i++){
+                conexionBD.ejecutaUpdate(vender[i]);
+            }
+            
+            String[] ventas = sentenciaVentas.split(":");
+            for(int j=0;j<ventas.length;j++){
+                conexionBD.ejecutaUpdate(ventas[j]);
+            }
+            
         } catch (SQLException ex) {
             throw ex;
         }
         
     }
     
+    public void borrar(){
+        sentenciaVender = "";
+        sentenciaVentas = "";
+        precio = 0;
+        nombre = "";
+    }
+    
     public boolean getSuficiente(){
         return suficiente;
+    }
+    
+    public boolean getEncontrado(){
+        return encontrado;
     }
     
     public float getPrecio(){

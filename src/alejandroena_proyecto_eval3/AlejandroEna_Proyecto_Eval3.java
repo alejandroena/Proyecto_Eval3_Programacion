@@ -5,11 +5,11 @@
  */
 package alejandroena_proyecto_eval3;
 
-import controlador.controlador_bajaProducto;
-import javax.swing.JFrame;
-import modelo.conexionBD;
-import modelo.modelo_bajaProducto;
-import vista.panel_bajaProductos;
+import controlador.controlador_comercial;
+import controlador.controlador_gerente;
+import controlador.controlador_login;
+import modelo.conexionBD;;
+import modelo.modelo_login;
 import vista.vista_comercial;
 import vista.vista_gerente;
 import vista.vista_login;
@@ -24,38 +24,38 @@ public class AlejandroEna_Proyecto_Eval3 {
      * @param args the command line arguments
      */
     
+    static conexionBD conexionBD;
+    static modelo_login mLogin;
+    static vista_login vLogin;
+    static controlador_login cLogin;
+    
     public static void main(String[] args) {
-        //conexionBD conexionBD = new conexionBD("programacioneval3", "user", "1234", "jdbc:mysql://localhost/");
-        //modelo_login mLogin = new modelo_login();
-        //vista_login vLogin = new vista_login();
-        //controlador_login cLogin = new controlador_login(vLogin, mLogin, conexionBD);
-        //vLogin.setVisible(true);
         
-        
+        conexionBD = new conexionBD("programacioneval3", "user", "1234", "jdbc:mysql://localhost/");
+        /**
+        mLogin = new modelo_login();
+        vLogin = new vista_login();
+        cLogin = new controlador_login(vLogin, mLogin, conexionBD);
+        vLogin.setVisible(true);
+        */       
+        iniciarUsuario("Gerente");
     }
     
     public static void iniciarUsuario(String usuario){
-        //conexionBD conexionBD = new conexionBD();
-        //(modelo no)modelo_usuario mUsuario = new modelo_usuario
         
         if(usuario.equals("Gerente")){
             vista_gerente vGerente = new vista_gerente();
-            //controlador_gerente cGerente = new controlador_gerente(vGerente, mUsuario, conexionBD);
+            controlador_gerente cGerente = new controlador_gerente(vGerente, conexionBD);
             vGerente.setVisible(true);
         }else{
             vista_comercial vComercial = new vista_comercial();
-            //controlador_comercial cComercial = new controlador_comercial(vComercial, mUsuario, conexionBD)
+            controlador_comercial cComercial = new controlador_comercial(vComercial, conexionBD);
             vComercial.setVisible(true);
         }
     }
     
     public static void cerrarSesion(){
-        //conexionbd
-        //modelo con conexionbd
-        //
-        vista_login login = new vista_login();
-        //controlador
-        login.setVisible(true);
+        vLogin.setVisible(true);
     }
     
 }
