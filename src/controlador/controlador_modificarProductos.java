@@ -10,13 +10,9 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.MaskFormatter;
@@ -25,8 +21,10 @@ import modelo.modelo_modificarProductos;
 import vista.panel_modificarProductos;
 
 /**
- *
- * @author Alejandro
+ * controlador de modificar productos
+ * @see modelo.modelo_modificarProductos
+ * @see vista.panel_modificarProductos
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_modificarProductos {
     
@@ -35,6 +33,12 @@ public class controlador_modificarProductos {
     private conexionBD conexionBD;
     ResultSet rs;
     
+    /**
+     * constructor de la clase
+     * @param modelo
+     * @param vista
+     * @param conexionBD 
+     */
     public controlador_modificarProductos(modelo_modificarProductos modelo, panel_modificarProductos vista, conexionBD conexionBD){
         this.vista = vista;
         this.modelo = modelo;
@@ -44,6 +48,9 @@ public class controlador_modificarProductos {
         crearTabla();
     }
     
+    /**
+     * modelo de la tabla
+     */
     public class ModeloTabla extends DefaultTableModel{
         
         public ModeloTabla(){
@@ -85,6 +92,9 @@ public class controlador_modificarProductos {
         }
     }
     
+    /**
+     * comportamiento de los botones
+     */
     public class ComportamientoBotones implements ActionListener{
 
         @Override
@@ -103,6 +113,9 @@ public class controlador_modificarProductos {
         }
     }
     
+    /**
+     * creacion de la tabla
+     */
     public void crearTabla(){
             
         try {
@@ -126,6 +139,9 @@ public class controlador_modificarProductos {
         }    
     }
     
+    /**
+     * guardado de los dats modificados en la base de datos
+     */
     public void guardarTabla(){
         try {
             rs.first();

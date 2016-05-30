@@ -13,7 +13,9 @@ import modelo.modelo_altaProducto;
 import vista.panel_altaProductos;
 
 /**
- *
+ * controlador de alta productos, da comportamiento a esta funcion
+ * @see modelo.modelo_altaProducto
+ * @see vista.panel_altaProductos
  * @author Alejandro Ena Encuentra
  */
 public class controlador_altaProducto {
@@ -21,12 +23,22 @@ public class controlador_altaProducto {
     private modelo_altaProducto modelo;
     private conexionBD conexionBD;
     
+    /**
+     * constructor de la clase
+     * @param vista
+     * @param modelo
+     * @param conexionBD 
+     */
     public controlador_altaProducto(panel_altaProductos vista, modelo_altaProducto modelo, conexionBD conexionBD){
         this.vista = vista;
         this.modelo = modelo;
         this.conexionBD = conexionBD;
         this.vista.ListenerBoton(new CalcularListener());
     }
+    
+    /**
+     * comportamiento de los botones
+     */
     public class CalcularListener implements ActionListener{
         String nombre, familia;
         int stock;

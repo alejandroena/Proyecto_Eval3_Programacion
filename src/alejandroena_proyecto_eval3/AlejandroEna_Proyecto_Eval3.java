@@ -15,13 +15,12 @@ import vista.vista_gerente;
 import vista.vista_login;
 
 /**
- *
- * @author Alumno
+ * @author Alejandro Ena Encuentra
  */
 public class AlejandroEna_Proyecto_Eval3 {
 
     /**
-     * @param args the command line arguments
+     * @param args inicia el login del programa
      */
     
     static conexionBD conexionBD;
@@ -41,6 +40,10 @@ public class AlejandroEna_Proyecto_Eval3 {
         iniciarUsuario("Gerente");
     }
     
+    /**
+     * @args inicia la vista del usuario
+     * @param usuario conectado
+     */
     public static void iniciarUsuario(String usuario){
         
         if(usuario.equals("Gerente")){
@@ -54,6 +57,9 @@ public class AlejandroEna_Proyecto_Eval3 {
         }
     }
     
+    /**
+     * @args muestra el login
+     */
     public static void cerrarSesion(){
         vLogin.setVisible(true);
     }

@@ -13,14 +13,22 @@ import modelo.modelo_añadirUsuario;
 import vista.vista_añadirUsuario;
 
 /**
- *
- * @author Alejandro
+ * controlador de añadir usuarios, da comportamiento a esta funcion
+ * @see modelo.modelo_añadirUsuario
+ * @see vista.vista_añadirUsuario
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_añadirUsuario {
     private vista_añadirUsuario vista;
     private modelo_añadirUsuario modelo;
     private conexionBD conexionBD;
     
+    /**
+     * constructor de la clase
+     * @param vista
+     * @param modelo
+     * @param conexionBD 
+     */
     public controlador_añadirUsuario(vista_añadirUsuario vista, modelo_añadirUsuario modelo, conexionBD conexionBD){
         this.vista = vista;
         this.modelo = modelo;
@@ -28,6 +36,9 @@ public class controlador_añadirUsuario {
         this.vista.ListenerBoton(new ComportamientoBoton());
     }
     
+    /**
+     * comportamiento de los botones
+     */
     public class ComportamientoBoton implements ActionListener{
         String usuario, contra1, contra2;
         

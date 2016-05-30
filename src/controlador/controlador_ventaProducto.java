@@ -8,21 +8,27 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.conexionBD;
 import modelo.modelo_ventaProducto;
 import vista.panel_ventaProducto;
 
 /**
- *
- * @author Alumno
+ * controlador de venta productos, da comportamiento a esta funcion
+ * @see vista.panel_ventaProducto
+ * @see modelo.modelo_ventaProducto
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_ventaProducto {
     private panel_ventaProducto vista;
     private modelo_ventaProducto modelo;
     private conexionBD conexionBD;
     
+    /**
+     * controlador de la clase
+     * @param vista
+     * @param modelo
+     * @param conexionBD 
+     */
     public controlador_ventaProducto(panel_ventaProducto vista, modelo_ventaProducto modelo, conexionBD conexionBD){
         this.vista = vista;
         this.modelo = modelo;
@@ -30,6 +36,9 @@ public class controlador_ventaProducto {
         this.vista.ListenerBoton(new CalcularListener());
     }
     
+    /**
+     * 
+     */
     public class CalcularListener implements ActionListener{
         int codigo, cantidad;
         

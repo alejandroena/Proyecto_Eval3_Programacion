@@ -26,8 +26,9 @@ import vista.vista_añadirUsuario;
 import vista.vista_gerente;
 
 /**
- *
- * @author Alejandro
+ * controlador del empleado gerente, da comportamiento a esta funcion
+ * @see vista.vista_gerente
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_gerente {
     private vista_gerente vista;
@@ -56,6 +57,11 @@ public class controlador_gerente {
     private panel_ventaProducto pVenta;
     private controlador_ventaProducto cVenta;
     
+    /**
+     * constructor de la clase
+     * @param vista
+     * @param conexionBD 
+     */
     public controlador_gerente(vista_gerente vista, conexionBD conexionBD){
         this.vista = vista;
         this.conexionBD = conexionBD;
@@ -64,6 +70,11 @@ public class controlador_gerente {
         iniciarTabs();
     }
     
+    /**
+     * comportamiento de los botones
+     * @see controlador.controlador_añadirUsuario
+     * @see controlador.controlador_importarArchivo
+     */
     public class ComportamientoBoton implements ActionListener{
         
         public void actionPerformed(ActionEvent e) {
@@ -84,6 +95,15 @@ public class controlador_gerente {
         }
     }
     
+    /**
+     * crea las distintas funciones del gerente
+     * @see controlador.controlador_visualizarProductos
+     * @see controlador.controlador_ventaProducto
+     * @see controlador.controlador_altaProducto
+     * @see controlador.controlador_bajaProducto
+     * @see controlador.controlador_visualizarVentas
+     * @see controlador.controlador_modificarProductos
+     */
     public void iniciarTabs(){
         mVisualizar = new modelo_visualizarProductos();
         pVisualizar = new panel_visualizarProductos();

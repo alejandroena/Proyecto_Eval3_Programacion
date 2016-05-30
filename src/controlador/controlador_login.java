@@ -14,8 +14,10 @@ import modelo.modelo_login;
 import vista.vista_login;
 
 /**
- *
- * @author Alejandro
+ * controlador de login, da comportamiento a esta funcion
+ * @see modelo.modelo_login
+ * @see vista.vista_login
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_login {
     private vista_login vistaLog;
@@ -23,12 +25,22 @@ public class controlador_login {
     private conexionBD conexionBD;
     private AlejandroEna_Proyecto_Eval3 main;
     
+    /**
+     * constructor de la clase
+     * @param vista
+     * @param modelo
+     * @param conexionBD 
+     */
     public controlador_login(vista_login vista, modelo_login modelo, conexionBD conexionBD){
         this.vistaLog = vista;
         this.modelo = modelo;
         this.conexionBD = conexionBD;
         this.vistaLog.añadirListener(new CalcularListener());
     }
+    
+    /**
+     * comportamiento de los botones
+     */
     public class CalcularListener implements ActionListener{
         String usuario, contraseña;
         

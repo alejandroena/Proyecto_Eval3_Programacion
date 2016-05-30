@@ -16,8 +16,9 @@ import vista.panel_visualizarProductos;
 import vista.vista_comercial;
 
 /**
- *
- * @author Alejandro
+ * controlador del usuario comercial, da comportamiento a esta funcion
+ * @see vista.vista_comercial
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_comercial {
     
@@ -31,6 +32,11 @@ public class controlador_comercial {
     private panel_ventaProducto pVenta;
     private controlador_ventaProducto cVenta;
     
+    /**
+     * constructor de la clase
+     * @param vista
+     * @param conexionBD 
+     */
     public controlador_comercial(vista_comercial vista, conexionBD conexionBD){
         this.vista = vista;
         this.conexionBD = conexionBD;
@@ -39,6 +45,9 @@ public class controlador_comercial {
         iniciarTabs();
     }
     
+    /**
+     * comportamiento de los botones
+     */
     public class ComportamientoBoton implements ActionListener{
 
         public void actionPerformed(ActionEvent e) {
@@ -47,6 +56,11 @@ public class controlador_comercial {
         }
     }
     
+    /**
+     * distintas funciones disponibles para el comercial
+     * @see controlador.controlador_visualizarProductos
+     * @see controlador.controlador_ventaProducto
+     */
     public void iniciarTabs(){
         mVisualizar = new modelo_visualizarProductos();
         pVisualizar = new panel_visualizarProductos();

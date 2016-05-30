@@ -15,14 +15,22 @@ import modelo.manejoXML;
 import vista.vista_exportarXML;
 
 /**
- *
- * @author Alejandro
+ * controlador de la funcion exportar xml, da comportamiento a esta funcion
+ * @see modelo.manejoXML
+ * @see vista.vista_exportarXML
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_exportarXML {
     private vista_exportarXML vista;
     private manejoXML manejo;
     private Articulo[] articulos;
     
+    /**
+     * constructor de la clase
+     * @param vista
+     * @param manejo
+     * @param articulos 
+     */
     public controlador_exportarXML(vista_exportarXML vista, manejoXML manejo, Articulo[] articulos){
         this.vista = vista;
         this.manejo = manejo;
@@ -30,6 +38,9 @@ public class controlador_exportarXML {
         this.vista.ListenerBoton(new ComportamientoBotones());
     }
     
+    /**
+     * comportamiento de los botones
+     */
     public class ComportamientoBotones implements ActionListener{
         String nombre, ruta;
         JFileChooser fc;
