@@ -33,10 +33,8 @@ public class panel_modificarProductos extends JPanel{
         datos = new JTable();
         btnGuardar = new JButton("Guardar");
         btnCancelar = new JButton("Cancelar");
-        
-        String columna[] = new String[]{"Nombre","Familia","Cantidad","Precio"};
-        tabla = new DefaultTableModel(null, columna);
-        datos = new JTable(tabla);
+
+        datos = new JTable();
         scrollPane = new JScrollPane(datos); 
         
         this.setLayout(new BorderLayout());
@@ -86,6 +84,9 @@ public class panel_modificarProductos extends JPanel{
         return datos.getValueAt(fila, columna);
     }
     
+    public void modeloTabla(DefaultTableModel modelo){
+        datos.setModel(modelo);
+    }
     public void ListenerBoton(ActionListener escucharBoton){
         btnGuardar.addActionListener(escucharBoton);
         btnCancelar.addActionListener(escucharBoton);

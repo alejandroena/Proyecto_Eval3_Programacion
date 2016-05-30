@@ -34,7 +34,6 @@ public class vista_exportarXML extends JFrame{
     public vista_exportarXML(){
         this.setTitle("Exportar vista");
         this.setBounds(700, 450, 400, 150);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setResizable(false);
         
         labelNombre = new JLabel("Nombre: ");

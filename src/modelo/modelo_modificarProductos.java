@@ -14,10 +14,11 @@ import java.sql.SQLException;
  */
 public class modelo_modificarProductos {
     conexionBD conexionBD;
+    
     public ResultSet cogerDatos(conexionBD conexionBD) throws SQLException{
         this.conexionBD = conexionBD;
         String sentenciaSQL = "SELECT * FROM articulos";
-        ResultSet rs = conexionBD.ejecutaQuery(sentenciaSQL);
+        ResultSet rs = this.conexionBD.ejecutaQuery(sentenciaSQL);
         return rs;
     }
     

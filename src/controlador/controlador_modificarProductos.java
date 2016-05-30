@@ -9,10 +9,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 import modelo.conexionBD;
 import modelo.modelo_modificarProductos;
 import vista.panel_modificarProductos;
@@ -33,7 +40,49 @@ public class controlador_modificarProductos {
         this.modelo = modelo;
         this.conexionBD = conexionBD;
         this.vista.ListenerBoton(new ComportamientoBotones());
+        
         crearTabla();
+    }
+    
+    public class ModeloTabla extends DefaultTableModel{
+        
+        public ModeloTabla(){
+            String columna[] = new String[]{"Nombre","Familia","Cantidad","Precio"};
+            DefaultTableModel tabla = new DefaultTableModel(null, columna);
+        
+            MaskFormatter mf1= null;
+            MaskFormatter mf2= null;
+            MaskFormatter mf3= null;
+            MaskFormatter mf4= null;
+            try {
+                mf1= new MaskFormatter("????????????????????????????????????????");
+                //mf1.setPlaceholderCharacter('_');
+                
+                mf2= new MaskFormatter("????????????????????");
+                //mf2.setPlaceholderCharacter('_');
+                
+                mf3= new MaskFormatter("####");
+                //mf3.setPlaceholderCharacter('_');
+                
+                mf4= new MaskFormatter("####.##");
+                //mf4.setPlaceholderCharacter('_');
+            } catch (ParseException ex) {
+                vista.mostrarError("error de formato");
+            }
+            
+            JTable table= new JTable(tabla);
+            DefaultTableColumnModel dcm=(DefaultTableColumnModel)table.getColumnModel();
+            
+            JFormattedTextField ftf1= new JFormattedTextField(mf1);
+            JFormattedTextField ftf2= new JFormattedTextField(mf2);
+            JFormattedTextField ftf3= new JFormattedTextField(mf3);
+            JFormattedTextField ftf4= new JFormattedTextField(mf4);
+            
+            dcm.getColumn(1).setCellEditor(new DefaultCellEditor(ftf1));
+            dcm.getColumn(2).setCellEditor(new DefaultCellEditor(ftf2));
+            dcm.getColumn(3).setCellEditor(new DefaultCellEditor(ftf3));
+            dcm.getColumn(4).setCellEditor(new DefaultCellEditor(ftf4));
+        }
     }
     
     public class ComportamientoBotones implements ActionListener{
@@ -57,6 +106,11 @@ public class controlador_modificarProductos {
     public void crearTabla(){
             
         try {
+            try {
+                conexionBD.abrirConexion();
+            } catch (ClassNotFoundException ex) {
+                vista.mostrarError("Error al contactar con la bse de datos");
+            }
             rs = this.modelo.cogerDatos(conexionBD);
             Object datos[] = new Object[4];
             
@@ -95,6 +149,7 @@ public class controlador_modificarProductos {
                 
                 i++;
             }
+            rs.close();
         } catch (SQLException ex) {
             vista.mostrarError("Error al guardar la tabla");
         }   
