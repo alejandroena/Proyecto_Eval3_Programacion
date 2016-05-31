@@ -9,8 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Alumno
+ * modelo de venta producto
+ * @see controlador.controlador_ventaProducto
+ * @see vista.panel_ventaProducto
+ * @author Alejandro Ena Encuentra
  */
 public class modelo_ventaProducto {
     
@@ -21,6 +23,13 @@ public class modelo_ventaProducto {
     float precio;
     String nombre;
     
+    /**
+     * comprueba si existe el producto en la base de datos y lo añade a la lista
+     * @param codigo
+     * @param cantidad
+     * @param conexionBD
+     * @throws SQLException 
+     */
     public void añadir(int codigo, int cantidad, conexionBD conexionBD) throws SQLException{
         String sentenciaCantidad = "SELECT * FROM articulos WHERE cod_articulo="+codigo;
         ResultSet rs = conexionBD.ejecutaQuery(sentenciaCantidad);
@@ -56,6 +65,11 @@ public class modelo_ventaProducto {
         }
     }
     
+    /**
+     * vende todos los productos especificados en la lista y lo guarda en la tabla ventas
+     * @param conexionBD
+     * @throws SQLException 
+     */
     public void vender(conexionBD conexionBD) throws SQLException{
         try {
             
@@ -75,6 +89,9 @@ public class modelo_ventaProducto {
         
     }
     
+    /**
+     * reestablece las sentencias sql
+     */
     public void borrar(){
         sentenciaVender = "";
         sentenciaVentas = "";
@@ -82,18 +99,32 @@ public class modelo_ventaProducto {
         nombre = "";
     }
     
+    /**
+     * devuelve boolean para saber si hay sufuciente cantidad de ese articulo o no
+     * @return boolean
+     */
     public boolean getSuficiente(){
         return suficiente;
     }
     
+    /**
+     * devuelve boolean para saber si existe el producto o no
+     * @return boolean
+     */
     public boolean getEncontrado(){
         return encontrado;
     }
     
+    /**
+     * @return el precio del articulo
+     */
     public float getPrecio(){
         return precio;
     }
     
+    /**
+     * @return el nombre del articulo
+     */
     public String getNombre(){
         return nombre;
     }

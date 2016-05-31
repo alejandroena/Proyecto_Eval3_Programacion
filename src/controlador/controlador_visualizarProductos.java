@@ -17,14 +17,22 @@ import vista.panel_visualizarProductos;
 import vista.vista_exportarXML;
 
 /**
- *
- * @author Alejandro
+ * controlador de visualizar ventas, da comortamiento a esta funcion
+ * @see modelo.modelo_visualizarVentas
+ * @see vista.panel_visualizarVentas
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_visualizarProductos {
     private panel_visualizarProductos vista;
     private modelo_visualizarProductos modelo;
     private conexionBD conexionBD;
     
+    /**
+     * constructor de la clase
+     * @param vista
+     * @param modelo
+     * @param conexionBD 
+     */
     public controlador_visualizarProductos(panel_visualizarProductos vista, modelo_visualizarProductos modelo, conexionBD conexionBD){
         this.vista = vista;
         this.modelo = modelo;
@@ -33,6 +41,9 @@ public class controlador_visualizarProductos {
         this.vista.ListenerBoton(new ComportamientoBoton());
     }
     
+    /**
+     * comportamiento de los radio button
+     */
     public class ComportamientoRadio implements ActionListener{
         
         @Override
@@ -58,6 +69,9 @@ public class controlador_visualizarProductos {
         }
     }
     
+    /**
+     * comportamiento de los botones
+     */
     public class ComportamientoBoton implements ActionListener{
         int codigo;
         String familia;
@@ -97,6 +111,10 @@ public class controlador_visualizarProductos {
             
         }
         
+        /**
+         * crea la tabla de los productos
+         * @throws SQLException 
+         */
         public void crearTabla() throws SQLException{
 
             Object datos[] = new Object[5];
@@ -110,6 +128,10 @@ public class controlador_visualizarProductos {
             rs.close();
         }
         
+        /**
+         * coge los articulos de la tabla
+         * @return array de articulos
+         */
         public Articulo[] cogerArticulos(){
             Articulo articulos[] = new Articulo[vista.getFilas()];
             

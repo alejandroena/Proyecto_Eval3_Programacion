@@ -20,8 +20,8 @@ import javax.swing.WindowConstants;
 
 
 /**
- *
- * @author Alumno
+ * vista del gerente
+ * @author Alejandro Ena Encuentra
  */
 public class vista_gerente extends JFrame{
     JButton btnSalir;
@@ -82,38 +82,71 @@ public class vista_gerente extends JFrame{
        JOptionPane.showMessageDialog(this, mensage);
     }
     
+    /**
+     * añade a la vista la tab de visualizar productos
+     * @param ver 
+     */
     public void tabVisualizar(panel_visualizarProductos ver){
         contenido.addTab("Visualizar Productos", ver);
     }
     
+    /**
+     * añade a la vista la tab de venta productos
+     * @param vender 
+     */
     public void tabVender(panel_ventaProducto vender){
         contenido.addTab("Vender Productos", vender);
     }
     
+    /**
+     * añade a la vista la tab de alta productos
+     * @param alta 
+     */
     public void tabAlta(panel_altaProductos alta){
         contenido.addTab("Alta Productos", alta);
     }
     
+    /**
+     * añade a la vista la tab de baja productos
+     * @param baja 
+     */
     public void tabBaja(panel_bajaProductos baja){
         contenido.addTab("Baja Productos", baja);
     }
     
+    /**
+     * añade a la vista la tab de visualizar ventas
+     * @param venta 
+     */
     public void tabVentas(panel_visualizarVentas venta){
         contenido.addTab("Visualizar Ventas", venta);
     }
     
+    /**
+     * añade a la vista la tab de modificar productos
+     * @param modificar 
+     */
     public void tabModificar(panel_modificarProductos modificar){
         contenido.addTab("Modificar Productos", modificar);
     }
     
+    /**
+     * @return el boton importar
+     */
     public JButton getBtnImportar(){
         return btnImportar;
     }
     
+    /**
+     * @return el boton crear
+     */
     public JButton getBtnCrear(){
         return btnCrear;
     }
     
+    /**
+     * @return el boton salir
+     */
     public JButton getBtnSalir(){
         return btnSalir;
     }

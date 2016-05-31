@@ -14,11 +14,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
 /**
- *
- * @author Alumno
+ * vista de exportar xml
+ * @see modelo.manejoXML
+ * @see controlador.controlador_exportarXML
+ * @author Alejandro Ena Encuentra
  */
 public class vista_exportarXML extends JFrame{
     JLabel labelNombre;
@@ -101,36 +102,63 @@ public class vista_exportarXML extends JFrame{
         this.add(labelError, constraints);
     }
     
+    /**
+     * establece el texto del textField ruta
+     * @param ruta 
+     */
     public void setTxtRuta(String ruta){
         txtRuta.setText(ruta);
     }
     
+    /**
+     * @return el texto del textField ruta
+     */
     public String getTxtRuta(){
         return txtRuta.getText();
     }
     
+    /**
+     * @return el texto del textField nombre
+     */
     public String getTxtNombre(){
         return txtNombre.getText();
     }
     
+    /**
+     * @return el boton examinar
+     */
     public JButton getBtnExaminar(){
         return btnExaminar;
     }
     
+    /**
+     * @return el boton aceptar
+     */
     public JButton getBtnAceptar(){
         return btnAceptar;
     }
     
+    /**
+     * @return el boton cencelar
+     */
     public JButton getBtnCancelar(){
         return btnCancelar;
     }
     
+    /**
+     * da comportamiento a los botones
+     * @param escucharBoton comportamiento de los botones
+     */
     public void ListenerBoton(ActionListener escucharBoton){
         btnExaminar.addActionListener(escucharBoton);
         btnCancelar.addActionListener(escucharBoton);
         btnAceptar.addActionListener(escucharBoton);
     }
-     
+    
+    /**
+     * establece el texto de la label
+     * @param texto 
+     */
     public void setLabelError(String texto){
         labelError.setText(texto);
     }

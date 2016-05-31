@@ -17,8 +17,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Alumno
+ * vista de venta productos
+ * @see modelo.modelo_ventaProducto
+ * @see controlador.controlador_ventaProducto
+ * @author Alejandro Ena Encuentra
  */
 public class panel_ventaProducto extends JPanel{
     JTextArea informacion;
@@ -113,6 +115,10 @@ public class panel_ventaProducto extends JPanel{
         return Integer.parseInt(txtCantidad.getText());                
     }
     
+    /**
+     * establece el total de la venta acumulada
+     * @param cantidad precio total del nuevo producto
+     */
     public void setTotal(float cantidad){
         try{
             String[] total = labelTotal.getText().split(":");

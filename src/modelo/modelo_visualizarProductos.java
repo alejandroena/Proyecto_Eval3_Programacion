@@ -9,12 +9,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Alejandro
+ * modelo de visualizar productos
+ * @see controlador.controlador_visualizarProductos
+ * @see vista.panel_visualizarProductos
+ * @author Alejandro Ena Encuentra
  */
 public class modelo_visualizarProductos {
     
-    
+    /**
+     * recoge los articulos de la base de datos
+     * @param codigo
+     * @param familia
+     * @param ordenar
+     * @param conexionBD
+     * @return los articulos encontrados
+     * @throws SQLException 
+     */
     public ResultSet cogerDatos(int codigo, String familia, boolean ordenar, conexionBD conexionBD) throws SQLException{
         String sentenciaSQL = "SELECT * FROM articulos";
         ResultSet rs= null;

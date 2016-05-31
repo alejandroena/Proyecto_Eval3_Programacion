@@ -17,8 +17,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Alumno
+ * vista de baja productos
+ * @see modelo.modelo_bajaProducto
+ * @see controlador.controlador_bajaProducto
+ * @author Alejandro ena Encuentra
  */
 public class panel_bajaProductos extends JPanel{
     JLabel labelTexto;
@@ -29,6 +31,7 @@ public class panel_bajaProductos extends JPanel{
     ButtonGroup grupo;
     JButton btnAceptar;
     JButton btnCancelar;
+    
     public panel_bajaProductos(){
         labelTexto = new JLabel("Introduce el codigo o el nombre del producto");
         radioCodigo = new JRadioButton("Codigo: ",true);
@@ -114,18 +117,28 @@ public class panel_bajaProductos extends JPanel{
         return txtNombre.getText();
     }
     
+    /**
+     * borra los datos de los testField
+     */
     public void borrarDatos(){
         txtCodigo.setText("");
         txtNombre.setText("");
     }
     
+    /**
+     * @return el boton aceptar
+     */
     public JButton getBtnAceptar(){
         return btnAceptar;
     }
     
+    /**
+     * @return el boton cancelar
+     */
     public JButton getBtnCancelar(){
         return btnCancelar;
     }
+    
     /**
      * @args añade comportamiento al boton
      * @param escucharBoton comportamiento del boton
@@ -173,6 +186,7 @@ public class panel_bajaProductos extends JPanel{
     public void enableTxtNombre(boolean enable){
         txtNombre.setEditable(enable);
     }
+    
     /**
      * @args muestra una alerta
      * @param mensage de alerta

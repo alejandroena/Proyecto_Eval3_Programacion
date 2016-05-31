@@ -7,7 +7,7 @@ package modelo;
 
 /**
  *
- * @author Alumno
+ * @author Alejandro Ena Encuentra
  */
 public class Articulo {
     private int codigo;

@@ -15,8 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Alumno
+ * vista de alta productos
+ * @see modelo.modelo_altaProducto
+ * @see controlador.controlador_altaProducto
+ * @author Alejandro Ena Encuentra
  */
 public class panel_altaProductos extends JPanel{
     JLabel labelNombre;
@@ -29,6 +31,7 @@ public class panel_altaProductos extends JPanel{
     JTextField txtPrecio;
     JButton btnCancelar;
     JButton btnAñadir;
+    
     
     public panel_altaProductos(){
         labelNombre = new JLabel("Nombre: ");
@@ -151,6 +154,9 @@ public class panel_altaProductos extends JPanel{
         }
     }
     
+    /**
+     * borra los datos de los textField
+     */
     public void borrarDatos(){
         txtNombre.setText("");
         txtFamilia.setText("");
@@ -158,10 +164,16 @@ public class panel_altaProductos extends JPanel{
         txtPrecio.setText("");
     }
     
+    /**
+     * @return el boton añadir
+     */
     public JButton getBtnAñadir(){
         return btnAñadir;
     }
     
+    /**
+     * @return el boton cancelar
+     */
     public JButton getBtnCancelar(){
         return btnCancelar;
     }

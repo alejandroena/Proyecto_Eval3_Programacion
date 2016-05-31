@@ -16,11 +16,21 @@ import org.jdom2.output.XMLOutputter;
 
 
 /**
- *
- * @author Alumno
+ * modelo de exportar xml
+ * @see controlador.controlador_exportarXML
+ * @see vista.vista_exportarXML
+ * @author Alejandro Ena Encuentra
  */
 public class manejoXML {
     
+    /**
+     * @crea un fichero xml con los articulos visualizados y los guarda en la ruta especificada
+     * @see controlador.controlador_visualizarProductos
+     * @param lista lista de productos visualizados
+     * @param arNom nombre del fichero xml
+     * @param ruta ruta del fichero xml
+     * @throws IOException 
+     */
     public void crearXML(Articulo[] lista, String arNom, String ruta) throws IOException{
         try{
             Element articulos = new Element("Articulos");

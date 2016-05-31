@@ -14,13 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.CellEditorListener;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author Alumno
+ * vista de modificar productos
+ * @see modelo.modelo_modificarProductos
+ * @see controlador.controlador_modificarProductos
+ * @author Alejandro ena Encuentra
  */
 public class panel_modificarProductos extends JPanel{
     JTable datos;
@@ -59,39 +59,72 @@ public class panel_modificarProductos extends JPanel{
         this.add(botones, BorderLayout.SOUTH);
     }
     
-    
+    /**
+     * @return el boton guardar
+     */
     public JButton getBtnGuardar(){
         return btnGuardar;
     }
     
+    /**
+     * @return el boton cancelar
+     */
     public JButton getBtnCancelar(){
         return btnCancelar;
     }
     
+    /**
+     * actualiza la tabla con los datos
+     * @param datos de la fila
+     */
     public void actualizarTabla(Object datos[]){
         tabla.addRow(datos);
     }
     
+    /**
+     * borra las filas de la tabla
+     */
     public void borrarTabla(){
         tabla.setNumRows(0);
     }
     
+    /**
+     * @return el numero de filas de la tabla
+     */
     public int getFilas(){
         return datos.getRowCount();
     }
     
+    /**
+     * @param fila
+     * @param columna
+     * @return el dato en la fila y columna espedificada
+     */
     public Object getDatos(int fila, int columna){
         return datos.getValueAt(fila, columna);
     }
     
+    /**
+     * establace el modelo de la tabla
+     * @param modelo de la tabla
+     */
     public void modeloTabla(DefaultTableModel modelo){
         datos.setModel(modelo);
     }
+    
+    /**
+     * da comportamiento a los botones
+     * @param escucharBoton comportamiento de los botones
+     */
     public void ListenerBoton(ActionListener escucharBoton){
         btnGuardar.addActionListener(escucharBoton);
         btnCancelar.addActionListener(escucharBoton);
     }
     
+    /**
+     * muestra el mensage de error
+     * @param mensage de error
+     */
     public void mostrarError(String mensage){
         JOptionPane.showMessageDialog(this.getParent(), mensage);
     }

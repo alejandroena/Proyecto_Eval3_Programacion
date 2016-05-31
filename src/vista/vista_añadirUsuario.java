@@ -19,8 +19,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Alumno
+ * vista de añadir usuario
+ * @see modelo.modelo_añadirUsuario
+ * @see controlador.controlador_añadirUsuario
+ * @author Alejandro Ena Encuentra
  */
 public class vista_añadirUsuario extends JFrame{
     JLabel labelNombre;
@@ -114,41 +116,71 @@ public class vista_añadirUsuario extends JFrame{
         this.add(form, BorderLayout.CENTER);
     }
     
+    /**
+     * @return nombre del usuario
+     */
     public String getTxtNombre(){
         return txtNombre.getText();
     }
     
+    /**
+     * @return contraseña del usuario
+     */
     public String getTxtContraseña(){
         return txtContraseña.getText();
     }
     
+    /**
+     * @return reContraseña del usuario
+     */
     public String getTxtReContraseña(){
         return txtReContraseña.getText();
     }
     
+    /**
+     * borra los datos de los textField
+     */
     public void borrarDatos(){
         txtNombre.setText("");
         txtContraseña.setText("");
         txtReContraseña.setText("");
     }
     
+    /**
+     * @return el boton aceptar
+     */
     public JButton getBtnAceptar(){
         return btnAceptar;
     }
     
+    /**
+     * @return el boton cancelar
+     */
     public JButton getBtnCancelar(){
         return btnCancelar;
     }
     
-     public void ListenerBoton(ActionListener escucharBoton){
+    /**
+     * da comportamiento a los botones
+     * @param escucharBoton comportamiento del boton
+     */
+    public void ListenerBoton(ActionListener escucharBoton){
         btnCancelar.addActionListener(escucharBoton);
         btnAceptar.addActionListener(escucharBoton);
     }
      
+    /**
+     * establece el texto de la label
+     * @param texto 
+     */
     public void setLabelError(String texto){
         labelError.setText(texto);
     }
     
+    /**
+     * muestra el mensage de error
+     * @param mensage de error
+     */
     public void mostrarError(String mensage){
         JOptionPane.showMessageDialog(this, mensage);
     }

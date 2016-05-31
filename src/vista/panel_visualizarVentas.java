@@ -24,6 +24,8 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * @args vista de ventas realizadas
+ * @see modelo.modelo_visualizarVentas
+ * @see controlador.controlador_visualizarVentas
  * @author Alejandro Ena Encuentra
  */
 public class panel_visualizarVentas extends JPanel{
@@ -173,30 +175,52 @@ public class panel_visualizarVentas extends JPanel{
         return txtFamilia.getText();
     }
     
+    /**
+     * borra los datos del textField codigo
+     */
     public void setTxtCodigo(){
         txtCodigo.setText("");
     }
     
+    /**
+     * borra lso datos del textField familia
+     */
     public void setTxtFamilia(){
         txtFamilia.setText("");
     }
     
+    /**
+     * borra las filas de la tabla
+     */
     public void borrarTabla(){
         tabla.setNumRows(0);
     }
     
+    /**
+     * añade a la tabla una fila con los datos
+     * @param datos 
+     */
     public void actualizarTabla(Object datos[]){
         tabla.addRow(datos);
     }
     
+    /**
+     * @return el radio button ninguno
+     */
     public JRadioButton getRadioNinguno(){
         return radioNinguno;
     }
     
+    /**
+     * @return el radio button codigo
+     */
     public JRadioButton getRadioCodigo(){
         return radioCodigo;
     }
     
+    /**
+     * @return el radio button familia
+     */
     public JRadioButton getRadioFamilia(){
         return radioFamilia;
     }
@@ -222,10 +246,18 @@ public class panel_visualizarVentas extends JPanel{
         }
     }
     
+    /**
+     * activa o desactiva el textField codigo
+     * @param enable 
+     */
     public void setEnableCodigo(boolean enable){
         txtCodigo.setEditable(enable);
     }
     
+    /**
+     * activa o desactiva el textField familia
+     * @param enable 
+     */
     public void setEnableFamilia(boolean enable){
         txtFamilia.setEditable(enable);
     }
@@ -248,6 +280,10 @@ public class panel_visualizarVentas extends JPanel{
         radioFamilia.addActionListener(escucharRadio);
     }
     
+    /**
+     * muestra el mensage de error
+     * @param mensage de error
+     */
     public void mostrarError(String mensage){
         JOptionPane.showMessageDialog(this.getParent(), mensage);
     }

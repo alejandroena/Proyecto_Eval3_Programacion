@@ -9,10 +9,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Alejandro
+ * modelo de visulizar ventas
+ * @see controlador.controlador_visualizarVentas
+ * @see vista.panel_visualizarVentas
+ * @author Alejandro Ena Encuentra
  */
 public class modelo_visualizarVentas {
+    
+    /**
+     * devuelve los datos de las ventas
+     * @param codigo
+     * @param familia
+     * @param fechaInicio
+     * @param fechaFinal
+     * @param conexionBD
+     * @return el ResultSet con los datos
+     * @throws SQLException 
+     */
     public ResultSet cogerDatos(int codigo, String familia, String fechaInicio, String fechaFinal, conexionBD conexionBD) throws SQLException{
         String sentenciaSQL = "SELECT a.cod_articulo, a.nombre, a.familia, v.cantidad, (a.precio*v.cantidad), v.fecha_venta FROM ventas v, articulos a "
                 + "WHERE a.cod_articulo = v.cod_articulo and CAST(fecha_venta as date)>='"+fechaInicio+"' and CAST(fecha_venta as date)<='"+fechaFinal+"'";

@@ -8,12 +8,21 @@ package modelo;
 import java.sql.SQLException;
 
 /**
- *
- * @author Alumno
+ * modelo de baja de productos
+ * @see controlador.controlador_bajaProducto
+ * @see vista.panel_bajaProductos
+ * @author Alejandro ena Encuentra
  */
 public class modelo_bajaProducto {
     boolean completado;
     
+    /**
+     * da de baja un producto en la base de datos
+     * @param codigo
+     * @param nombre
+     * @param conexionBD
+     * @throws SQLException 
+     */
     public void baja(int codigo, String nombre, conexionBD conexionBD) throws SQLException{
         String sentenciaSQL;
         int n = 0;
@@ -33,6 +42,10 @@ public class modelo_bajaProducto {
         }
     }
     
+    /**
+     * devuelve un boolean para saber si se ha dado de baja el producto o no
+     * @return boolean
+     */
     public boolean getCompletado(){
         return completado;
     }

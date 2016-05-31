@@ -24,8 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author Alumno
+ * vista de visualizar productos
+ * @see controlador.controlador_visualizarProductos
+ * @see modelo.modelo_visualizarProductos
+ * @author Alejandor Ena Encuentra
  */
 public class panel_visualizarProductos extends JPanel{
     JLabel labelFiltro;
@@ -134,6 +136,9 @@ public class panel_visualizarProductos extends JPanel{
         this.add(scrollPane, BorderLayout.CENTER);
     }
     
+    /**
+     * @return el codigo
+     */
     public int getTxtCodigo(){
         if(txtCodigo.getText().equals("")){
             return 0;
@@ -143,77 +148,139 @@ public class panel_visualizarProductos extends JPanel{
         }
     }
     
+    /**
+     * @return la familia
+     */
     public String getTxtFamilia(){
         return txtFamilia.getText();
     }
     
+    /**
+     * borra los datos del textField codigo
+     */
     public void setTxtCodigo(){
         txtCodigo.setText("");
     }
     
+    /**
+     * borra los datos del TextField familia
+     */
     public void setTxtFamilia(){
         txtFamilia.setText("");
     }
     
+    /**
+     * @return el boton buscar
+     */
     public JButton getBtnBuscar(){
         return btnBuscar;
     }
     
+    /**
+     * @return el boton exportar
+     */
     public JButton getBtnExportar(){
         return btnExportar;
     }
     
+    /**
+     * le da comportamiento a los botones
+     * @param escucharBoton comportamiento de los botones
+     */
     public void ListenerBoton(ActionListener escucharBoton){
         btnBuscar.addActionListener(escucharBoton);
         btnExportar.addActionListener(escucharBoton);
     }
     
+    /**
+     * le da comportamiento a los radio button
+     * @param escucharRadio comportamiento de los radio button
+     */
     public void ListenerRadio(ActionListener escucharRadio){
         radioNinguno.addActionListener(escucharRadio);
         radioCodigo.addActionListener(escucharRadio);
         radioFamilia.addActionListener(escucharRadio);
     }
     
+    /**
+     * @return el radio button ninguno
+     */
     public JRadioButton getRadioNinguno(){
         return radioNinguno;
     }
     
+    /**
+     * @return el radio button codigo
+     */
     public JRadioButton getRadioCodigo(){
         return radioCodigo;
     }
     
+    /**
+     * @return el radio button familia
+     */
     public JRadioButton getRadioFamilia(){
         return radioFamilia;
     }
     
+    /**
+     * activa o desactiva el textfield codigo
+     * @param enable 
+     */
     public void setEnableCodigo(boolean enable){
         txtCodigo.setEditable(enable);
     }
     
+    /**
+     * activa o desactiva el textField familia
+     * @param enable 
+     */
     public void setEnableFamilia(boolean enable){
         txtFamilia.setEditable(enable);
     }
     
+    /**
+     * @return el checkBox
+     */
     public JCheckBox getCheckBox(){
         return checkBox;
     }
     
+    /**
+     * añade a la tabla una fila con los datos
+     * @param datos 
+     */
     public void actualizarTabla(Object datos[]){
         tabla.addRow(datos);
     }
     
+    /**
+     * borra las filas de la tabla
+     */
     public void borrarTabla(){
         tabla.setNumRows(0);
     }
     
+    /**
+     * @return el numero de filas de la tabla
+     */
     public int getFilas(){
         return datos.getRowCount();
     }
     
+    /**
+     * @param fila
+     * @param columna
+     * @return el valor de la tabla en esa fila y columna
+     */
     public Object getDatos(int fila, int columna){
         return datos.getValueAt(fila, columna);
     }
     
+    /**
+     * muestra un mensaje de error
+     * @param mensage de error
+     */
     public void mostrarError(String mensage){
         JOptionPane.showMessageDialog(this.getParent(), mensage);
     }

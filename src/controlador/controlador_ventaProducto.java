@@ -24,7 +24,7 @@ public class controlador_ventaProducto {
     private conexionBD conexionBD;
     
     /**
-     * controlador de la clase
+     * constructorr de la clase
      * @param vista
      * @param modelo
      * @param conexionBD 
@@ -37,7 +37,7 @@ public class controlador_ventaProducto {
     }
     
     /**
-     * 
+     * comportamiento de los botones
      */
     public class CalcularListener implements ActionListener{
         int codigo, cantidad;

@@ -17,9 +17,10 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 /**
- *
- * @author Alejandro Ena Encuentra
  * @args vista de login del programa
+ * @see modelo.modelo_login
+ * @see controlador.controlador_login
+ * @author Alejandro Ena Encuentra
  */
 public class vista_login extends JFrame{
     static JLabel labelLogo;
@@ -103,6 +104,9 @@ public class vista_login extends JFrame{
         return txtContraseña.getText();
     }
     
+    /**
+     * borra los detos de los textField
+     */
     public void borrarDatos(){
         txtUsuario.setText("");
         txtContraseña.setText("");

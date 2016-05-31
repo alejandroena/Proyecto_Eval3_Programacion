@@ -14,14 +14,22 @@ import modelo.modelo_visualizarVentas;
 import vista.panel_visualizarVentas;
 
 /**
- *
- * @author Alejandro
+ * controlador de visualizar ventas, da comportamiento a esta funcion
+ * @see modelo.modelo_visualizarVentas
+ * @see vista.panel_visualizarVentas
+ * @author Alejandro Ena Encuentra
  */
 public class controlador_visualizarVentas {
     private modelo_visualizarVentas modelo;
     private panel_visualizarVentas vista;
     private conexionBD conexionBD;
     
+    /**
+     * constructor de la clase
+     * @param modelo
+     * @param vista
+     * @param conexionBD 
+     */
     public controlador_visualizarVentas(modelo_visualizarVentas modelo, panel_visualizarVentas vista, conexionBD conexionBD){
         this.modelo = modelo;
         this.vista = vista;
@@ -30,6 +38,9 @@ public class controlador_visualizarVentas {
         this.vista.ListenerBoton(new ComportamientoBoton());
     }
     
+    /**
+     * comportamiento de los radio button
+     */
     public class ComportamientoRadio implements ActionListener{
         
         @Override
@@ -55,6 +66,9 @@ public class controlador_visualizarVentas {
         }
     }
     
+    /**
+     * comportamiento de los botones
+     */
     public class ComportamientoBoton implements ActionListener{
         int codigo;
         String familia;
@@ -86,7 +100,11 @@ public class controlador_visualizarVentas {
                     vista.mostrarError("El codigo debe ser un numero");
                 }
             }
-
+        
+        /**
+         * añade datos a la tabla
+         * @throws SQLException 
+         */
         public void crearTabla() throws SQLException{
 
             Object datos[] = new Object[6];

@@ -17,8 +17,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 /**
- *
- * @author Alumno
+ * vista del comercial
+ * @see controlador.controlador_comercial
+ * @author Alejandro Ena Encuentra
  */
 public class vista_comercial extends JFrame{
     
@@ -62,10 +63,18 @@ public class vista_comercial extends JFrame{
        JOptionPane.showMessageDialog(this, mensage);
     }
     
+    /**
+     * añade la tab visualizar productos a la vista
+     * @param ver 
+     */
     public void tabVisualizar(panel_visualizarProductos ver){
         contenido.addTab("Visualizar Productos", ver);
     }
     
+    /**
+     * añade la tab vender productos a la vista
+     * @param vender 
+     */
     public void tabVender(panel_ventaProducto vender){
         contenido.addTab("Vender Productos", vender);
     }
