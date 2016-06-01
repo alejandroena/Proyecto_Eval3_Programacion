@@ -31,13 +31,11 @@ public class AlejandroEna_Proyecto_Eval3 {
     public static void main(String[] args) {
         
         conexionBD = new conexionBD("programacioneval3", "user", "1234", "jdbc:mysql://localhost/");
-        /**
         mLogin = new modelo_login();
         vLogin = new vista_login();
         cLogin = new controlador_login(vLogin, mLogin, conexionBD);
         vLogin.setVisible(true);
-        */       
-        iniciarUsuario("Gerente");
+        
     }
     
     /**

@@ -73,4 +73,5 @@ public class modelo_modificarProductos {
         String sentenciaSQL = "UPDATE articulos SET precio="+precio+" WHERE cod_articulo = "+codigo;
         conexionBD.ejecutaUpdate(sentenciaSQL);
     }
+    
 }

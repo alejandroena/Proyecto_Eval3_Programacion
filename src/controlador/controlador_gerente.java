@@ -8,10 +8,18 @@ package controlador;
 import alejandroena_proyecto_eval3.AlejandroEna_Proyecto_Eval3;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import modelo.conexionBD;
 import modelo.modelo_altaProducto;
 import modelo.modelo_añadirUsuario;
 import modelo.modelo_bajaProducto;
+import modelo.modelo_importarArchivo;
 import modelo.modelo_modificarProductos;
 import modelo.modelo_ventaProducto;
 import modelo.modelo_visualizarProductos;
@@ -56,6 +64,7 @@ public class controlador_gerente {
     private modelo_ventaProducto mVenta;
     private panel_ventaProducto pVenta;
     private controlador_ventaProducto cVenta;
+    private modelo_importarArchivo mImportar;
     
     /**
      * constructor de la clase
@@ -73,7 +82,7 @@ public class controlador_gerente {
     /**
      * comportamiento de los botones
      * @see controlador.controlador_añadirUsuario
-     * @see controlador.controlador_importarArchivo
+     * @see modelo.modelo_importarArchivo
      */
     public class ComportamientoBoton implements ActionListener{
         
@@ -90,7 +99,21 @@ public class controlador_gerente {
                 vAñadir.setVisible(true);
             }
             else if(obj.equals(vista.getBtnImportar())){
-                //importar datos
+                JFileChooser fc = new JFileChooser();
+                fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                
+                int respuesta = fc.showSaveDialog(vista);
+                if (respuesta == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    mImportar = new modelo_importarArchivo();
+                    try {
+                        mImportar.añadirArticulo(file, conexionBD);
+                    } catch (ClassNotFoundException | SQLException ex) {
+                        vista.mostrarAlerta("Error al importar el archivo");
+                    } catch (IOException ex) {
+                        vista.mostrarAlerta("Error al leer el archivo");
+                    } 
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * vista de modificar productos
  * @see modelo.modelo_modificarProductos
  * @see controlador.controlador_modificarProductos
- * @author Alejandro ena Encuentra
+ * @author Alejandro Ena Encuentra
  */
 public class panel_modificarProductos extends JPanel{
     JTable datos;
@@ -33,8 +33,19 @@ public class panel_modificarProductos extends JPanel{
         datos = new JTable();
         btnGuardar = new JButton("Guardar");
         btnCancelar = new JButton("Cancelar");
-
-        datos = new JTable();
+        String columna[] = new String[]{"Codigo","Nombre","Familia","Cantidad","Precio"};
+        tabla = new DefaultTableModel(null, columna){
+            @Override 
+            public boolean isCellEditable (int fila, int columna) {
+                if (columna ==0){
+                    return false;
+                }
+                return true;
+            }
+        };
+           
+        datos = new JTable(tabla);
+            
         scrollPane = new JScrollPane(datos); 
         
         this.setLayout(new BorderLayout());
@@ -102,6 +113,13 @@ public class panel_modificarProductos extends JPanel{
      */
     public Object getDatos(int fila, int columna){
         return datos.getValueAt(fila, columna);
+    }
+    
+    /** 
+     * @return la tabla
+     */
+    public JTable getTabla(){
+        return datos;
     }
     
     /**

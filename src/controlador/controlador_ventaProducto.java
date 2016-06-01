@@ -79,6 +79,7 @@ public class controlador_ventaProducto {
                     conexionBD.cerrarConexion();
                     modelo.borrar();
                     vista.borrarInformacion();
+                    vista.mostrarAlerta("Venta realizada");
                 } catch (SQLException | ClassNotFoundException ex) {
                     vista.mostrarAlerta("Error al procesar la venta");
                 }

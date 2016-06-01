@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
@@ -44,53 +46,36 @@ public class controlador_modificarProductos {
         this.modelo = modelo;
         this.conexionBD = conexionBD;
         this.vista.ListenerBoton(new ComportamientoBotones());
-        
+        ModeloTabla();
         crearTabla();
     }
     
     /**
      * modelo de la tabla
      */
-    public class ModeloTabla extends DefaultTableModel{
         
-        public ModeloTabla(){
-            String columna[] = new String[]{"Nombre","Familia","Cantidad","Precio"};
-            DefaultTableModel tabla = new DefaultTableModel(null, columna);
-        
+        public void ModeloTabla(){
+
             MaskFormatter mf1= null;
             MaskFormatter mf2= null;
-            MaskFormatter mf3= null;
-            MaskFormatter mf4= null;
+            
             try {
-                mf1= new MaskFormatter("????????????????????????????????????????");
-                //mf1.setPlaceholderCharacter('_');
+                mf1= new MaskFormatter("####");
                 
-                mf2= new MaskFormatter("????????????????????");
-                //mf2.setPlaceholderCharacter('_');
-                
-                mf3= new MaskFormatter("####");
-                //mf3.setPlaceholderCharacter('_');
-                
-                mf4= new MaskFormatter("####.##");
-                //mf4.setPlaceholderCharacter('_');
+                mf2= new MaskFormatter("######");
+
             } catch (ParseException ex) {
                 vista.mostrarError("error de formato");
             }
             
-            JTable table= new JTable(tabla);
-            DefaultTableColumnModel dcm=(DefaultTableColumnModel)table.getColumnModel();
-            
+            DefaultTableColumnModel dcm=(DefaultTableColumnModel)vista.getTabla().getColumnModel();
+
             JFormattedTextField ftf1= new JFormattedTextField(mf1);
             JFormattedTextField ftf2= new JFormattedTextField(mf2);
-            JFormattedTextField ftf3= new JFormattedTextField(mf3);
-            JFormattedTextField ftf4= new JFormattedTextField(mf4);
             
-            dcm.getColumn(1).setCellEditor(new DefaultCellEditor(ftf1));
-            dcm.getColumn(2).setCellEditor(new DefaultCellEditor(ftf2));
-            dcm.getColumn(3).setCellEditor(new DefaultCellEditor(ftf3));
-            dcm.getColumn(4).setCellEditor(new DefaultCellEditor(ftf4));
+            dcm.getColumn(3).setCellEditor(new DefaultCellEditor(ftf1));
+            dcm.getColumn(4).setCellEditor(new DefaultCellEditor(ftf2));
         }
-    }
     
     /**
      * comportamiento de los botones
@@ -106,6 +91,7 @@ public class controlador_modificarProductos {
                 crearTabla();
             }
             else if(obj.equals(vista.getBtnGuardar())){
+                vista.getTabla();
                 guardarTabla();
                 vista.borrarTabla();
                 crearTabla();
@@ -119,22 +105,19 @@ public class controlador_modificarProductos {
     public void crearTabla(){
             
         try {
-            try {
-                conexionBD.abrirConexion();
-            } catch (ClassNotFoundException ex) {
-                vista.mostrarError("Error al contactar con la bse de datos");
-            }
+            conexionBD.abrirConexion();
+            
             rs = this.modelo.cogerDatos(conexionBD);
-            Object datos[] = new Object[4];
+            Object datos[] = new Object[5];
             
             while(rs.next()){
-                for(int i=0; i<4; i++){
-                    datos[i] = rs.getObject(i+2);
+                for(int i=0; i<5; i++){
+                    datos[i] = rs.getObject(i+1);
                 }
                 vista.actualizarTabla(datos);
             }
             
-        } catch (SQLException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             vista.mostrarError("Error al crear la tabla");
         }    
     }
@@ -144,28 +127,52 @@ public class controlador_modificarProductos {
      */
     public void guardarTabla(){
         try {
-            rs.first();
-            int i=0;
-            while(rs.next()){
-                if(rs.getObject(2).equals(vista.getDatos(i, 0))==false){
-                    modelo.guardarNombre((String)vista.getDatos(i, 0), (int)rs.getObject(1));
-                }
+            for(int i=0;i<vista.getTabla().getRowCount();i++){
+               
+                String nombre = (String)vista.getDatos(i, 1);
                 
-                if(rs.getObject(3).equals(vista.getDatos(i, 1))==false){
-                    modelo.guardarFamilia((String)vista.getDatos(i, 1), (int)rs.getObject(1));
-                }
+                String familia = (String)vista.getDatos(i, 2);
                 
-                if(rs.getObject(4).equals(vista.getDatos(i, 2))==false){
-                    modelo.guardarCantidad((int)vista.getDatos(i, 2), (int)rs.getObject(1));
+                int cantidad;
+                try{
+                    cantidad = (int)vista.getDatos(i, 3);
+                }catch(ClassCastException ex){
+                    try{
+                        String cant = (String)vista.getDatos(i, 3);
+                        cantidad = Integer.parseInt(cant.replace(" ", ""));
+                    }catch(NumberFormatException es){
+                        cantidad = -1;
+                    }
                 }
-                
-                if(rs.getObject(5).equals(vista.getDatos(i, 3))==false){
-                    modelo.guardarPrecio((float)vista.getDatos(i, 3), (int)rs.getObject(1));
+
+                float precio;
+                try{
+                    precio = (float)vista.getDatos(i, 4);
+                }catch(ClassCastException ex){
+                    try{
+                        String pre = (String)vista.getDatos(i, 4);
+                        precio = Float.parseFloat(pre.replace(" ", ""));  
+                    }catch(NumberFormatException es){
+                        precio = -1;
+                    }
                 }
+                    
+                int codigo = (int)vista.getDatos(i, 0);
                 
-                i++;
+                if(nombre.equals("")==false){
+                    modelo.guardarNombre(nombre, codigo);
+                }
+                if(familia.equals("")==false){
+                    modelo.guardarFamilia(familia, codigo);
+                }
+                if(cantidad>0){
+                    modelo.guardarCantidad(cantidad, codigo);
+                }
+                if(precio>0){
+                    modelo.guardarPrecio(precio, codigo);
+                }
             }
-            rs.close();
+             
         } catch (SQLException ex) {
             vista.mostrarError("Error al guardar la tabla");
         }   
