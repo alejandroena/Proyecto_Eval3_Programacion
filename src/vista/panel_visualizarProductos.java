@@ -14,6 +14,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,7 +36,7 @@ public class panel_visualizarProductos extends JPanel{
     JRadioButton radioCodigo;
     JTextField txtCodigo;
     JRadioButton radioFamilia;
-    JTextField txtFamilia;
+    JComboBox txtFamilia;
     ButtonGroup grupo;
     JButton btnBuscar;
     JCheckBox checkBox;
@@ -53,9 +54,8 @@ public class panel_visualizarProductos extends JPanel{
         txtCodigo = new JTextField();
             txtCodigo.setColumns(10);
             txtCodigo.setEditable(false);
-        txtFamilia = new JTextField();
-            txtFamilia.setEditable(false);
-            txtFamilia.setColumns(10);
+        txtFamilia = new JComboBox();
+            txtFamilia.setEnabled(false);
         grupo = new ButtonGroup();
             grupo.add(radioNinguno);
             grupo.add(radioCodigo);
@@ -152,7 +152,7 @@ public class panel_visualizarProductos extends JPanel{
      * @return la familia
      */
     public String getTxtFamilia(){
-        return txtFamilia.getText();
+        return (String)txtFamilia.getSelectedItem();
     }
     
     /**
@@ -166,7 +166,16 @@ public class panel_visualizarProductos extends JPanel{
      * borra los datos del TextField familia
      */
     public void setTxtFamilia(){
-        txtFamilia.setText("");
+        txtFamilia.setSelectedItem(null);
+    }
+    
+    /**
+     * añade los objetos a la lista
+     * @param datos 
+     */
+    public void setFamiliaDatos(Object datos){
+        txtFamilia.addItem(datos);
+        txtFamilia.setSelectedItem(null);
     }
     
     /**
@@ -236,7 +245,7 @@ public class panel_visualizarProductos extends JPanel{
      * @param enable 
      */
     public void setEnableFamilia(boolean enable){
-        txtFamilia.setEditable(enable);
+        txtFamilia.setEnabled(enable);
     }
     
     /**

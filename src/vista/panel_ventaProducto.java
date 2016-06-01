@@ -36,7 +36,7 @@ public class panel_ventaProducto extends JPanel{
     public panel_ventaProducto(){
         informacion = new JTextArea();
             informacion.setEditable(false);
-            informacion.setColumns(30);
+            informacion.setColumns(40);
         labelCodigo = new JLabel("Codigo");
         labelCantidad = new JLabel("Cantidad");
         txtCodigo = new JTextField();

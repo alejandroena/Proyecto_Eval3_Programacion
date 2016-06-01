@@ -56,7 +56,7 @@ public class controlador_ventaProducto {
                     conexionBD.cerrarConexion();
                     if(modelo.getEncontrado()){
                         if(modelo.getSuficiente()){
-                            vista.setInformacion(codigo+" "+modelo.getNombre()+"\t x"+cantidad+"\t"+modelo.getPrecio()+"€");
+                            vista.setInformacion(codigo+"\t"+modelo.getNombre()+"\t x"+cantidad+"\t"+modelo.getPrecio()+"€");
                             vista.setTotal(modelo.getPrecio());
                         }
                         else{

@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -39,7 +40,7 @@ public class panel_visualizarVentas extends JPanel{
     JRadioButton radioFamilia;
     ButtonGroup grupo;
     JTextField txtCodigo;
-    JTextField txtFamilia;
+    JComboBox txtFamilia;
     JButton btnBuscar;
     JTable datos;
     SimpleDateFormat formateador;
@@ -59,9 +60,8 @@ public class panel_visualizarVentas extends JPanel{
         txtCodigo = new JTextField();
             txtCodigo.setColumns(10);
             txtCodigo.setEditable(false);
-        txtFamilia = new JTextField();
-            txtFamilia.setEditable(false);
-            txtFamilia.setColumns(10);
+        txtFamilia = new JComboBox();
+            txtFamilia.setEnabled(false);
         btnBuscar = new JButton("Buscar");
         
         grupo.add(radioNinguno);
@@ -172,7 +172,7 @@ public class panel_visualizarVentas extends JPanel{
      * @return la familia del producto
      */
     public String getTxtFamilia(){
-        return txtFamilia.getText();
+        return (String) txtFamilia.getSelectedItem();
     }
     
     /**
@@ -186,7 +186,7 @@ public class panel_visualizarVentas extends JPanel{
      * borra lso datos del textField familia
      */
     public void setTxtFamilia(){
-        txtFamilia.setText("");
+        txtFamilia.setSelectedItem(null);
     }
     
     /**
@@ -236,6 +236,15 @@ public class panel_visualizarVentas extends JPanel{
     }
     
     /**
+     * añade los objetos a la lista
+     * @param datos 
+     */
+    public void setFamiliaDatos(Object datos){
+        txtFamilia.addItem(datos);
+        txtFamilia.setSelectedItem(null);
+    }
+    
+    /**
      * @return la fecha final
      */
     public String getFechaFinal(){
@@ -259,7 +268,7 @@ public class panel_visualizarVentas extends JPanel{
      * @param enable 
      */
     public void setEnableFamilia(boolean enable){
-        txtFamilia.setEditable(enable);
+        txtFamilia.setEnabled(enable);
     }
     
     /**

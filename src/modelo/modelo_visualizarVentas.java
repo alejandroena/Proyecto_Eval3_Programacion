@@ -42,4 +42,17 @@ public class modelo_visualizarVentas {
         
         return rs;
     }
+    
+    /**
+     * coge los distintos tipos de familia de los productos
+     * @param conexionBD
+     * @return
+     * @throws SQLException 
+     */
+    public ResultSet cogerFamilia(conexionBD conexionBD) throws SQLException{
+    String sentenciaSQL ="SELECT distinct(familia) FROM articulos";
+    ResultSet rs = conexionBD.ejecutaQuery(sentenciaSQL);
+
+    return rs;
+}
 }

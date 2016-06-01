@@ -36,6 +36,25 @@ public class controlador_visualizarVentas {
         this.conexionBD = conexionBD;
         this.vista.ListenerRadio(new ComportamientoRadio());
         this.vista.ListenerBoton(new ComportamientoBoton());
+        añadirDatos();
+    }
+    
+    /**
+     * añade objetos a la lista de familia de articulos
+     */
+    public void añadirDatos(){
+            
+        try {
+            conexionBD.abrirConexion();
+            ResultSet rs = this.modelo.cogerFamilia(conexionBD);
+            while(rs.next()){
+                vista.setFamiliaDatos(rs.getObject(1));
+            }
+            rs.close();
+            conexionBD.cerrarConexion();
+        } catch (SQLException | ClassNotFoundException ex) {
+            vista.mostrarError("no se ha podido cargar las familias de los productos");
+        }
     }
     
     /**

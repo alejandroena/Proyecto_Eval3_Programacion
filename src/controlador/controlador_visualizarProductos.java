@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Articulo;
 import modelo.conexionBD;
 import modelo.manejoXML;
@@ -39,6 +41,25 @@ public class controlador_visualizarProductos {
         this.conexionBD = conexionBD;
         this.vista.ListenerRadio(new ComportamientoRadio());
         this.vista.ListenerBoton(new ComportamientoBoton());
+        añadirDatos();
+    }
+    
+    /**
+     * añade objetos a la lista desplegable
+     */
+    public void añadirDatos(){
+            
+        try {
+            conexionBD.abrirConexion();
+            ResultSet rs = this.modelo.cogerFamilia(conexionBD);
+            while(rs.next()){
+                vista.setFamiliaDatos(rs.getObject(1));
+            }
+            rs.close();
+            conexionBD.cerrarConexion();
+        } catch (SQLException | ClassNotFoundException ex) {
+            vista.mostrarError("no se ha podido cargar las familias de los productos");
+        }
     }
     
     /**
