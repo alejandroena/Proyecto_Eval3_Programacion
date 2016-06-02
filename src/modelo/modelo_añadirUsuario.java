@@ -62,12 +62,12 @@ public class modelo_añadirUsuario {
      */
     public boolean comprobarContraseña(String contraseña){
         
-        String patern = "^+[A-Z][a-z]{2}[\\w]*[\\d]{2,}[$]$";
+        String patern = "^[A-Z]+[a-z]{2}[\\w]*[\\d]{2,}[$]$";
         
         Pattern pat = Pattern.compile(patern);
         Matcher mat = pat.matcher(contraseña);
             
-        if(mat.matches()){
+        if(mat.matches() && contraseña.length()>7){
             return true;
         }
         else{
