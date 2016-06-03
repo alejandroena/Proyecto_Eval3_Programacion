@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  */
 public class modelo_añadirUsuario {
     
-    boolean completado;
+    private boolean completado;
     
     /**
      * añade un usuario a la base de datos

@@ -23,14 +23,14 @@ import javax.swing.JTextField;
  * @author Alejandro ena Encuentra
  */
 public class panel_bajaProductos extends JPanel{
-    JLabel labelTexto;
-    JRadioButton radioCodigo;
-    JRadioButton radioNombre;
-    JTextField  txtCodigo;
-    JTextField txtNombre;
-    ButtonGroup grupo;
-    JButton btnAceptar;
-    JButton btnCancelar;
+    private JLabel labelTexto;
+    private JRadioButton radioCodigo;
+    private JRadioButton radioNombre;
+    private JTextField  txtCodigo;
+    private JTextField txtNombre;
+    private ButtonGroup grupo;
+    private JButton btnAceptar;
+    private JButton btnCancelar;
     
     public panel_bajaProductos(){
         labelTexto = new JLabel("Introduce el codigo o el nombre del producto");

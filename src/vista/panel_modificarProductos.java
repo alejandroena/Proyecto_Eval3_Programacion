@@ -23,11 +23,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Alejandro Ena Encuentra
  */
 public class panel_modificarProductos extends JPanel{
-    JTable datos;
-    JButton btnGuardar;
-    JButton btnCancelar;
-    DefaultTableModel tabla;
-    JScrollPane scrollPane;
+    private JTable datos;
+    private JButton btnGuardar;
+    private JButton btnCancelar;
+    private DefaultTableModel tabla;
+    private JScrollPane scrollPane;
     
     public panel_modificarProductos(){
         datos = new JTable();

@@ -31,20 +31,20 @@ import javax.swing.table.DefaultTableModel;
  * @author Alejandor Ena Encuentra
  */
 public class panel_visualizarProductos extends JPanel{
-    JLabel labelFiltro;
-    JRadioButton radioNinguno;
-    JRadioButton radioCodigo;
-    JTextField txtCodigo;
-    JRadioButton radioFamilia;
-    JComboBox txtFamilia;
-    ButtonGroup grupo;
-    JButton btnBuscar;
-    JCheckBox checkBox;
-    JButton btnExportar;
-    final JTable datos;
-    ImageIcon imgExportar;
-    DefaultTableModel tabla;
-    JScrollPane scrollPane;
+    private JLabel labelFiltro;
+    private JRadioButton radioNinguno;
+    private JRadioButton radioCodigo;
+    private JTextField txtCodigo;
+    private JRadioButton radioFamilia;
+    private JComboBox txtFamilia;
+    private ButtonGroup grupo;
+    private JButton btnBuscar;
+    private JCheckBox checkBox;
+    private JButton btnExportar;
+    private JTable datos;
+    private ImageIcon imgExportar;
+    private DefaultTableModel tabla;
+    private JScrollPane scrollPane;
         
     public panel_visualizarProductos(){
         labelFiltro = new JLabel("Filtros: ");

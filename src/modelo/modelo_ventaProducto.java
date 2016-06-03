@@ -16,12 +16,12 @@ import java.sql.SQLException;
  */
 public class modelo_ventaProducto {
     
-    boolean suficiente;
-    boolean encontrado;
-    String sentenciaVender ="";
-    String sentenciaVentas ="";
-    float precio;
-    String nombre;
+    private boolean suficiente;
+    private boolean encontrado;
+    private String sentenciaVender ="";
+    private String sentenciaVentas ="";
+    private float precio;
+    private String nombre;
     
     /**
      * comprueba si existe el producto en la base de datos y lo añade a la lista

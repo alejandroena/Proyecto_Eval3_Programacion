@@ -23,9 +23,9 @@ import javax.swing.WindowConstants;
  */
 public class vista_comercial extends JFrame{
     
-    JButton btnSalir;
-    ImageIcon imagen;
-    JTabbedPane contenido;
+    private JButton btnSalir;
+    private ImageIcon imagen;
+    private JTabbedPane contenido;
     
     public vista_comercial(){
         this.setTitle("Comercial - Proyecto Eval3");

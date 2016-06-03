@@ -16,10 +16,10 @@ import java.sql.Statement;
  * @author Alejandro Ena Encuentra
  */
 public class conexionBD {
-    String bd;
-    String usuario;
-    String contraseña;
-    String servidor;
+    private String bd;
+    private String usuario;
+    private String contraseña;
+    private String servidor;
     
     Connection conexion;
     

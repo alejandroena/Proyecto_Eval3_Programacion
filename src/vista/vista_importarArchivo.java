@@ -21,13 +21,13 @@ import javax.swing.WindowConstants;
  * @author Alumno
  */
 public class vista_importarArchivo extends JFrame{
-    JLabel labelRuta;
-    JTextField txtRuta;
-    JButton btnExaminar;
-    JButton btnCancelar;
-    JButton btnAceptar;
-    ImageIcon imgBuscar;
-    JLabel labelError;
+    private JLabel labelRuta;
+    private JTextField txtRuta;
+    private JButton btnExaminar;
+    private JButton btnCancelar;
+    private JButton btnAceptar;
+    private ImageIcon imgBuscar;
+    private JLabel labelError;
     
     public vista_importarArchivo(){
         this.setTitle("img_importar archivo");

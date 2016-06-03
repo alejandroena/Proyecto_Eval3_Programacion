@@ -30,22 +30,22 @@ import javax.swing.table.DefaultTableModel;
  * @author Alejandro Ena Encuentra
  */
 public class panel_visualizarVentas extends JPanel{
-    JLabel labelTxt1;
-    JLabel labelTxt2;
-    JDateChooser fechaInicial;
-    JDateChooser fechaFinal;
-    JLabel labelFiltro;
-    JRadioButton radioNinguno;
-    JRadioButton radioCodigo;
-    JRadioButton radioFamilia;
-    ButtonGroup grupo;
-    JTextField txtCodigo;
-    JComboBox txtFamilia;
-    JButton btnBuscar;
-    JTable datos;
-    SimpleDateFormat formateador;
-    DefaultTableModel tabla;
-    JScrollPane scrollPane;
+    private JLabel labelTxt1;
+    private JLabel labelTxt2;
+    private JDateChooser fechaInicial;
+    private JDateChooser fechaFinal;
+    private JLabel labelFiltro;
+    private JRadioButton radioNinguno;
+    private JRadioButton radioCodigo;
+    private JRadioButton radioFamilia;
+    private ButtonGroup grupo;
+    private JTextField txtCodigo;
+    private JComboBox txtFamilia;
+    private JButton btnBuscar;
+    private JTable datos;
+    private SimpleDateFormat formateador;
+    private DefaultTableModel tabla;
+    private JScrollPane scrollPane;
     
     public panel_visualizarVentas(){
         labelTxt1 = new JLabel("De     ");

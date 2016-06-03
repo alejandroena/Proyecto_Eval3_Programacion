@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class modelo_altaProducto {
     
-    boolean completado;
+    private boolean completado;
     
     /**
      * da de alta el producto en la base de datos con los atributos especificados

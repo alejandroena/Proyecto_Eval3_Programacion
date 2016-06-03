@@ -23,15 +23,15 @@ import javax.swing.JTextField;
  * @author Alejandro Ena Encuentra
  */
 public class panel_ventaProducto extends JPanel{
-    JTextArea informacion;
-    JLabel labelCodigo;
-    JLabel labelCantidad;
-    JLabel labelTotal;
-    JTextField txtCodigo;
-    JTextField txtCantidad;
-    JButton btnAñadir;
-    JButton btnVender;
-    JButton btnCancelar;
+    private JTextArea informacion;
+    private JLabel labelCodigo;
+    private JLabel labelCantidad;
+    private JLabel labelTotal;
+    private JTextField txtCodigo;
+    private JTextField txtCantidad;
+    private JButton btnAñadir;
+    private JButton btnVender;
+    private JButton btnCancelar;
     
     public panel_ventaProducto(){
         informacion = new JTextArea();

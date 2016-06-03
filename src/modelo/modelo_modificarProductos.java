@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * @author Alejandro ena Encuentra
  */
 public class modelo_modificarProductos {
-    conexionBD conexionBD;
+    private conexionBD conexionBD;
     
     /**
      * recoge todos los articulos de la base de datos

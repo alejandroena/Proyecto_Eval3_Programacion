@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author Alejandro ena Encuentra
  */
 public class modelo_bajaProducto {
-    boolean completado;
+    private boolean completado;
     
     /**
      * da de baja un producto en la base de datos

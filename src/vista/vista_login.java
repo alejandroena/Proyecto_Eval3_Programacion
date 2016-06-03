@@ -23,12 +23,12 @@ import javax.swing.WindowConstants;
  * @author Alejandro Ena Encuentra
  */
 public class vista_login extends JFrame{
-    static JLabel labelLogo;
-    static JLabel labelUsuario;
-    static JLabel labelContraseña;
-    static JTextField txtUsuario;
-    static JTextField txtContraseña;
-    static JButton btnConectar;
+    private JLabel labelLogo;
+    private JLabel labelUsuario;
+    private JLabel labelContraseña;
+    private JTextField txtUsuario;
+    private JTextField txtContraseña;
+    private JButton btnConectar;
     
     public vista_login(){
         

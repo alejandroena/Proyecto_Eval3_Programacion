@@ -24,13 +24,13 @@ import javax.swing.WindowConstants;
  * @author Alejandro Ena Encuentra
  */
 public class vista_gerente extends JFrame{
-    JButton btnSalir;
-    JButton btnCrear;
-    JButton btnImportar;
-    ImageIcon imgSalir;
-    ImageIcon imgCrear;
-    ImageIcon imgImportar;
-    JTabbedPane contenido;
+    private JButton btnSalir;
+    private JButton btnCrear;
+    private JButton btnImportar;
+    private ImageIcon imgSalir;
+    private ImageIcon imgCrear;
+    private ImageIcon imgImportar;
+    private JTabbedPane contenido;
     
     public vista_gerente(){
         this.setTitle("Gerente - Proyecto Eval3");

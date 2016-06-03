@@ -7,7 +7,7 @@ package modelo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 /**
  * modelo de visualizar productos
@@ -33,7 +33,7 @@ public class modelo_visualizarProductos {
         if(codigo!=0){
             sentenciaSQL = sentenciaSQL.concat(" WHERE cod_articulo = "+codigo);
         }
-        else if(familia.equals("")==false){
+        else if(familia!=null){
             sentenciaSQL = sentenciaSQL.concat(" WHERE familia = '"+familia+"'");
         }
         

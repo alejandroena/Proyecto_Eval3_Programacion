@@ -25,15 +25,15 @@ import javax.swing.JTextField;
  * @author Alejandro Ena Encuentra
  */
 public class vista_añadirUsuario extends JFrame{
-    JLabel labelNombre;
-    JLabel labelContraseña;
-    JLabel labelReContraseña;
-    JTextField txtNombre;
-    JTextField txtContraseña;
-    JTextField txtReContraseña;
-    JButton btnCancelar;
-    JButton btnAceptar;
-    JLabel labelError;
+    private JLabel labelNombre;
+    private JLabel labelContraseña;
+    private JLabel labelReContraseña;
+    private JTextField txtNombre;
+    private JTextField txtContraseña;
+    private JTextField txtReContraseña;
+    private JButton btnCancelar;
+    private JButton btnAceptar;
+    private JLabel labelError;
     
     public vista_añadirUsuario(){
         this.setTitle("Añadir usuario");

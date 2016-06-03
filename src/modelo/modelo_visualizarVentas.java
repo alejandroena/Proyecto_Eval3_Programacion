@@ -34,7 +34,7 @@ public class modelo_visualizarVentas {
         if(codigo!=0){
             sentenciaSQL = sentenciaSQL.concat(" AND v.cod_articulo = "+codigo);
         }
-        else if(familia.equals("")==false){
+        else if(familia!=null){
             sentenciaSQL = sentenciaSQL.concat(" AND a.familia = '"+familia+"'");
         }
         

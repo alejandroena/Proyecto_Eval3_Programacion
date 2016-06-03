@@ -21,13 +21,13 @@ import java.util.ArrayList;
 public class modelo_importarArchivo {
     
     
-    File fichero;
+    private File fichero;
     
     /**
      * lee los articulos almacenados en un fichero de texto
      * @return array de articulos
      */
-    public Articulo[] leerFichero() throws FileNotFoundException, IOException{
+    public Articulo[] leerFichero() throws FileNotFoundException, IOException, NumberFormatException{
         ArrayList<Articulo> articulos = new ArrayList();
         String cadena;
         FileReader fr = new FileReader(fichero);
@@ -48,6 +48,7 @@ public class modelo_importarArchivo {
             articulos.add(articulo);
             br.readLine();
         }
+        
         return (Articulo[]) articulos.toArray();
     }
     

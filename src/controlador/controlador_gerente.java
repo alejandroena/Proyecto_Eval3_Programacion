@@ -112,7 +112,9 @@ public class controlador_gerente {
                         vista.mostrarAlerta("Error al importar el archivo");
                     } catch (IOException ex) {
                         vista.mostrarAlerta("Error al leer el archivo");
-                    } 
+                    } catch(NumberFormatException ex){
+                        vista.mostrarAlerta("El archivo no cumple la estructura requerida");
+                    }
                 }
             }
         }

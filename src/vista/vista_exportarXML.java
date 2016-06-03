@@ -22,15 +22,15 @@ import javax.swing.JTextField;
  * @author Alejandro Ena Encuentra
  */
 public class vista_exportarXML extends JFrame{
-    JLabel labelNombre;
-    JTextField txtNombre;
-    JLabel labelRuta;
-    JTextField txtRuta;
-    JButton btnExaminar;
-    JButton btnCancelar;
-    JButton btnAceptar;
-    ImageIcon imgBuscar;
-    JLabel labelError;
+    private JLabel labelNombre;
+    private JTextField txtNombre;
+    private JLabel labelRuta;
+    private JTextField txtRuta;
+    private JButton btnExaminar;
+    private JButton btnCancelar;
+    private JButton btnAceptar;
+    private ImageIcon imgBuscar;
+    private JLabel labelError;
     
     public vista_exportarXML(){
         this.setTitle("Exportar vista");

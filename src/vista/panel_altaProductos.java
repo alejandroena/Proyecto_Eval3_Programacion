@@ -21,16 +21,16 @@ import javax.swing.JTextField;
  * @author Alejandro Ena Encuentra
  */
 public class panel_altaProductos extends JPanel{
-    JLabel labelNombre;
-    JLabel labelFamilia;
-    JLabel labelStock;
-    JLabel labelPrecio;
-    JTextField txtNombre;
-    JTextField txtFamilia;
-    JTextField txtStock;
-    JTextField txtPrecio;
-    JButton btnCancelar;
-    JButton btnAñadir;
+    private JLabel labelNombre;
+    private JLabel labelFamilia;
+    private JLabel labelStock;
+    private JLabel labelPrecio;
+    private JTextField txtNombre;
+    private JTextField txtFamilia;
+    private JTextField txtStock;
+    private JTextField txtPrecio;
+    private JButton btnCancelar;
+    private JButton btnAñadir;
     
     
     public panel_altaProductos(){
