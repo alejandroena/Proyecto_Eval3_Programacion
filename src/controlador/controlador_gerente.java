@@ -108,6 +108,7 @@ public class controlador_gerente {
                     mImportar = new modelo_importarArchivo();
                     try {
                         mImportar.añadirArticulo(file, conexionBD);
+                        vista.mostrarAlerta("Atchivo importado");
                     } catch (ClassNotFoundException | SQLException ex) {
                         vista.mostrarAlerta("Error al importar el archivo");
                     } catch (IOException ex) {

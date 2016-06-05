@@ -22,13 +22,13 @@ public class modelo_añadirUsuario {
     /**
      * añade un usuario a la base de datos
      * @param usuario
-     * @param contraseña
+     * @param contrasenia
      * @param conexionBD
      * @throws SQLException 
      */
-    public void añadir(String usuario, String contraseña, conexionBD conexionBD) throws SQLException{
+    public void añadir(String usuario, String contrasenia, conexionBD conexionBD) throws SQLException{
         String sentenciaSQL = "INSERT INTO usuarios(Usuario, Contraseña)"
-                + "VALUES('"+usuario+"', '"+contraseña+"');";
+                + "VALUES('"+usuario+"', '"+contrasenia+"');";
         
         int n = conexionBD.ejecutaUpdate(sentenciaSQL);
         
@@ -57,17 +57,17 @@ public class modelo_añadirUsuario {
     
     /**
      * comprueba si la contraseña cumple con los requisitos
-     * @param contraseña
+     * @param contrasenia
      * @return 
      */
-    public boolean comprobarContraseña(String contraseña){
+    public boolean comprobarContrasenia(String contrasenia){
         
         String patern = "^[A-Z]+[a-z]{2}[\\w]*[\\d]{2,}[$]$";
         
         Pattern pat = Pattern.compile(patern);
-        Matcher mat = pat.matcher(contraseña);
+        Matcher mat = pat.matcher(contrasenia);
             
-        if(mat.matches() && contraseña.length()>7){
+        if(mat.matches() && contrasenia.length()>7){
             return true;
         }
         else{

@@ -62,6 +62,8 @@ public class controlador_bajaProducto {
                 }
             } catch (ClassNotFoundException | SQLException ex) {
                 vista.mostrarAlerta("Ha ocurrido un error al intentar dar de baja el producto");
+            } catch(NumberFormatException ex){
+                vista.mostrarAlerta("El codigo tiene que ser un numero");
             }
             }
             else if(obj.equals(vista.getBtnCancelar())){

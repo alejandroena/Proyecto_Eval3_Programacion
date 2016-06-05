@@ -113,5 +113,5 @@ public class vista_importarArchivo extends JFrame{
     
     public void setLabelError(String texto){
          labelError.setText(texto);
-     }
+    }
 }

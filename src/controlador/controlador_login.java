@@ -42,17 +42,17 @@ public class controlador_login {
      * comportamiento de los botones
      */
     public class CalcularListener implements ActionListener{
-        String usuario, contraseña;
+        String usuario, contrasenia;
         
         @Override
         public void actionPerformed(ActionEvent e) {
             
             try {
                 usuario = vistaLog.getTxtUsuario();
-                contraseña = vistaLog.getTxtContraseña();
+                contrasenia = vistaLog.getTxtContrasenia();
                 
                 conexionBD.abrirConexion();
-                modelo.conectar(usuario, contraseña, conexionBD);
+                modelo.conectar(usuario, contrasenia, conexionBD);
                 conexionBD.cerrarConexion();
                 
                 if(modelo.getConectar()){

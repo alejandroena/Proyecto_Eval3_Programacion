@@ -20,12 +20,12 @@ public class modelo_login {
     /**
      * busca en la base de datos un usuario con estos datos
      * @param usuario
-     * @param contraseña
+     * @param contrasenia
      * @param conexionBD
      * @throws SQLException 
      */
-    public void conectar(String usuario, String contraseña, conexionBD conexionBD) throws SQLException{
-        String sentenciaSQL ="SELECT * FROM usuarios WHERE usuario ='"+usuario+"' AND contraseña ='"+contraseña+"';";
+    public void conectar(String usuario, String contrasenia, conexionBD conexionBD) throws SQLException{
+        String sentenciaSQL ="SELECT * FROM usuarios WHERE usuario ='"+usuario+"' AND contraseña ='"+contrasenia+"';";
         ResultSet rs = conexionBD.ejecutaQuery(sentenciaSQL);
         rs.last();
         

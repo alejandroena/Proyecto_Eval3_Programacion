@@ -26,8 +26,9 @@ public class modelo_importarArchivo {
     /**
      * lee los articulos almacenados en un fichero de texto
      * @return array de articulos
+     * @throws java.io.FileNotFoundException
      */
-    public Articulo[] leerFichero() throws FileNotFoundException, IOException, NumberFormatException{
+    public ArrayList<Articulo> leerFichero() throws FileNotFoundException, IOException, NumberFormatException{
         ArrayList<Articulo> articulos = new ArrayList();
         String cadena;
         FileReader fr = new FileReader(fichero);
@@ -38,6 +39,7 @@ public class modelo_importarArchivo {
         br.readLine();
         
         while((cadena=br.readLine())!=null){
+            System.out.println(cadena);
             String[] datos = cadena.split(",");
             Articulo articulo = new Articulo();
             articulo.setCodigo(Integer.parseInt(datos[0]));
@@ -48,8 +50,8 @@ public class modelo_importarArchivo {
             articulos.add(articulo);
             br.readLine();
         }
-        
-        return (Articulo[]) articulos.toArray();
+        br.close();
+        return articulos;
     }
     
     /**
@@ -58,17 +60,19 @@ public class modelo_importarArchivo {
      * @param conexionBD
      * @throws ClassNotFoundException
      * @throws SQLException 
+     * @throws java.io.FileNotFoundException 
      */
     public void añadirArticulo(File fichero, conexionBD conexionBD) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException{
         this.fichero = fichero;
         String sentenciaSQL;
-        Articulo articulos[] = leerFichero();
+        ArrayList<Articulo> articulos = leerFichero();
         conexionBD.abrirConexion();
-        for(int i=0;i<articulos.length;i++){
-            sentenciaSQL = "INSERT INTO articulos (codigo, nombre, familia, cantidad, precio)"
-                    + " VALUES("+articulos[i].getCodigo()+", '"+articulos[i].getNombre()+"', '"
-                    +articulos[i].getFamilia()+"', "+articulos[i].getCantidad()+", "+articulos[i].getPrecio()+");";
+        for(int i=0;i<articulos.size();i++){
+            sentenciaSQL = "INSERT INTO articulos (cod_articulo, nombre, familia, cantidad, precio)"
+                    + " VALUES("+articulos.get(i).getCodigo()+", '"+articulos.get(i).getNombre()+"', '"
+                    +articulos.get(i).getFamilia()+"', "+articulos.get(i).getCantidad()+", "+articulos.get(i).getPrecio()+");";
+            conexionBD.ejecutaUpdate(sentenciaSQL);
         }
-        conexionBD.cerrarConexion();;
+        conexionBD.cerrarConexion();
     }
 }

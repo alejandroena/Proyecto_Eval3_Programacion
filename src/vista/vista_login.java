@@ -25,9 +25,9 @@ import javax.swing.WindowConstants;
 public class vista_login extends JFrame{
     private JLabel labelLogo;
     private JLabel labelUsuario;
-    private JLabel labelContraseña;
+    private JLabel labelContrasenia;
     private JTextField txtUsuario;
-    private JTextField txtContraseña;
+    private JTextField txtContrasenia;
     private JButton btnConectar;
     
     public vista_login(){
@@ -39,11 +39,11 @@ public class vista_login extends JFrame{
         
         labelLogo = new JLabel("Proyecto Eval3");
         labelUsuario = new JLabel("Usuario: ");
-        labelContraseña = new JLabel("Contraseña: ");
+        labelContrasenia = new JLabel("Contraseña: ");
         txtUsuario = new JTextField();
             txtUsuario.setColumns(8);
-        txtContraseña = new JPasswordField();
-            txtContraseña.setColumns(8);
+        txtContrasenia = new JPasswordField();
+            txtContrasenia.setColumns(8);
         btnConectar = new JButton("Conectar");
         
         this.getContentPane().setLayout (new GridBagLayout());
@@ -73,13 +73,13 @@ public class vista_login extends JFrame{
         constraints.gridy = 2;
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
-        this.getContentPane().add(labelContraseña, constraints);
+        this.getContentPane().add(labelContrasenia, constraints);
         
         constraints.gridx = 2;
         constraints.gridy = 2;
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
-        this.getContentPane().add(txtContraseña, constraints);
+        this.getContentPane().add(txtContrasenia, constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 3;
@@ -100,8 +100,8 @@ public class vista_login extends JFrame{
     /**
      * @return la contraseña
      */
-    public String getTxtContraseña(){
-        return txtContraseña.getText();
+    public String getTxtContrasenia(){
+        return txtContrasenia.getText();
     }
     
     /**
@@ -109,7 +109,7 @@ public class vista_login extends JFrame{
      */
     public void borrarDatos(){
         txtUsuario.setText("");
-        txtContraseña.setText("");
+        txtContrasenia.setText("");
     }
     
     /**

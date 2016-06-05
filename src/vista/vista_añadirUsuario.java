@@ -26,11 +26,11 @@ import javax.swing.JTextField;
  */
 public class vista_añadirUsuario extends JFrame{
     private JLabel labelNombre;
-    private JLabel labelContraseña;
-    private JLabel labelReContraseña;
+    private JLabel labelContrasenia;
+    private JLabel labelReContrasenia;
     private JTextField txtNombre;
-    private JTextField txtContraseña;
-    private JTextField txtReContraseña;
+    private JTextField txtContrasenia;
+    private JTextField txtReContrasenia;
     private JButton btnCancelar;
     private JButton btnAceptar;
     private JLabel labelError;
@@ -41,14 +41,14 @@ public class vista_añadirUsuario extends JFrame{
         this.setResizable(false);
         
         labelNombre = new JLabel("Usuario");
-        labelContraseña = new JLabel("Contraseña");
-        labelReContraseña = new JLabel("Repite Contraseña");
+        labelContrasenia = new JLabel("Contraseña");
+        labelReContrasenia = new JLabel("Repite Contraseña");
         txtNombre = new JTextField();
             txtNombre.setColumns(15);
-        txtContraseña = new JPasswordField();
-            txtContraseña.setColumns(15);
-        txtReContraseña = new JPasswordField();
-            txtReContraseña.setColumns(15);
+        txtContrasenia = new JPasswordField();
+            txtContrasenia.setColumns(15);
+        txtReContrasenia = new JPasswordField();
+            txtReContrasenia.setColumns(15);
         btnCancelar = new JButton("Cancelar");
         btnAceptar = new JButton("Aceptar");
         labelError = new JLabel();
@@ -75,25 +75,25 @@ public class vista_añadirUsuario extends JFrame{
         constraints.gridy = 1;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        form.add(labelContraseña, constraints);
+        form.add(labelContrasenia, constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        form.add(txtContraseña, constraints);
+        form.add(txtContrasenia, constraints);
         
         constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        form.add(labelReContraseña, constraints);
+        form.add(labelReContrasenia, constraints);
         
         constraints.gridx = 1;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        form.add(txtReContraseña, constraints);
+        form.add(txtReContrasenia, constraints);
         
         constraints.gridx = 0;
         constraints.gridy = 3;
@@ -126,15 +126,15 @@ public class vista_añadirUsuario extends JFrame{
     /**
      * @return contraseña del usuario
      */
-    public String getTxtContraseña(){
-        return txtContraseña.getText();
+    public String getTxtContrasenia(){
+        return txtContrasenia.getText();
     }
     
     /**
      * @return reContraseña del usuario
      */
-    public String getTxtReContraseña(){
-        return txtReContraseña.getText();
+    public String getTxtReContrasenia(){
+        return txtReContrasenia.getText();
     }
     
     /**
@@ -142,8 +142,8 @@ public class vista_añadirUsuario extends JFrame{
      */
     public void borrarDatos(){
         txtNombre.setText("");
-        txtContraseña.setText("");
-        txtReContraseña.setText("");
+        txtContrasenia.setText("");
+        txtReContrasenia.setText("");
     }
     
     /**

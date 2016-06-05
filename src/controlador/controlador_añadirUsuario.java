@@ -48,8 +48,8 @@ public class controlador_añadirUsuario {
             
             if(obj.equals(vista.getBtnAceptar())){
                 usuario = vista.getTxtNombre();
-                contra1 = vista.getTxtContraseña();
-                contra2 = vista.getTxtReContraseña();
+                contra1 = vista.getTxtContrasenia();
+                contra2 = vista.getTxtReContrasenia();
                 
                 if(usuario.length()<4){
                     vista.setLabelError("El usuario debe contener al menos 4 caracteres");
@@ -61,7 +61,7 @@ public class controlador_añadirUsuario {
                     if(contra1.equals(contra2)==false){
                         vista.setLabelError("Las contraseñas no coinciden");
                     }
-                    else if(modelo.comprobarContraseña(contra1)==false){
+                    else if(modelo.comprobarContrasenia(contra1)==false){
                         vista.setLabelError("La contraseña no cumple los requisitos");
                     }
                     else{
